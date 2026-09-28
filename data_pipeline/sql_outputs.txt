@@ -1,0 +1,559 @@
+================================================================================
+Query 1 - SELECT / WHERE
+================================================================================
+SELECT
+            title,
+            price_gbp,
+            rating
+        FROM books
+        WHERE price_gbp > 20
+        ORDER BY price_gbp DESC
+
+                                                                                                                                                                          title  price_gbp  rating
+                                                                                                                                   The Death of Humanity: and the Case for Life      58.11       4
+                                                                                                                                                 Slow States of Collapse: Poems      57.31       3
+                                                                                             Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991      57.25       3
+                                                                                                                                                            The Past Never Ends      56.50       4
+                                                The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!      56.41       1
+                                                                                                                                                              Masks and Shadows      56.40       2
+                                                                                                                                                The Secret of Dreadwillow Carse      56.13       1
+                                                                                                                 The Electric Pencil: Drawings from Inside State Hospital No. 3      56.06       1
+                                                                                                                                                  Birdsong: A Story in Pictures      54.64       3
+                                                                                                                                          Sapiens: A Brief History of Humankind      54.23       5
+                                                                                                                              The Murder That Never Was (Forensic Instincts #5)      54.11       3
+                                                                                                          Judo: Seven Steps to Black Belt (an Introductory Guide for Beginners)      53.90       2
+                                                                                                                                                             Tipping the Velvet      53.74       1
+                                                                                                                                                 Aladdin and His Wonderful Lamp      53.13       3
+                                                                                                                        Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)      52.29       5
+                                                                                                                                                            Behind Closed Doors      52.22       4
+                                                                                                                                                                The Black Maria      52.15       1
+                                                                                                                                                           A Light in the Attic      51.77       3
+                                                                                                                                                   Libertarianism for Beginners      51.33       2
+                                                                                                                                  Saga, Volume 5 (Saga (Collected Editions) #5)      51.04       2
+                                                                                                            Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) #11-15)      50.40       3
+                                                                                                                                                   We Love You, Charlie Freeman      50.27       5
+                                                                                                                                                                     Soumission      50.10       1
+                                                                                    The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life      49.05       3
+                                                                                                         orange: The Complete Collection 1 (orange: The Complete Collection #1)      48.41       1
+                                                                                                                                                                  Sharp Objects      47.82       4
+                                                                                                                                                    Private Paris (Private #10)      47.61       5
+                                                                                                                  Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes #5-8)      46.91       2
+                                                                                                                        Online Marketing for Busy Authors: A Step-By-Step Guide      46.35       1
+                                                                                                                 Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)      45.61       3
+                                                                                                                      The Natural History of Us (The Fine Art of Pretending #2)      45.22       3
+                                                                                                                                                        It's Only the Himalayas      45.17       2
+                                                                                                                                                Without Borders (Wanderlove #1)      45.07       2
+                                                                                                                                                                 Wall and Piece      44.18       4
+                                                                      Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness      44.18       4
+                                                                                                                      The Most Perfect Thing: Inside (and Outside) a Bird's Egg      42.96       4
+                                                                                                 Spark Joy: An Illustrated Master Class on the Art of Organizing and Tidying Up      41.83       4
+                                                                                                                                                                 The Art Forger      40.76       3
+                                                                                                                        Worlds Elsewhere: Journeys Around Shakespeareâs Globe      40.30       5
+                                                                                                                       Layered: Baking, Building, and Styling Spectacular Cakes      40.11       1
+                                                                                                                                                                    Soul Reader      39.58       2
+                                                                                                                                                                       Security      39.25       2
+                                                                                                                                       The Nameless City (The Nameless City #1)      38.16       4
+                                                                                                                          Mesaerion: The Best Science Fiction Stories 1800-1849      37.59       1
+                                                                                                                                                                How Music Works      37.32       2
+                                                                                                                      The Gutsy Girl: Escapades for Your Life of Epic Adventure      37.13       1
+                                                                                                                                                         The Bear and the Piano      36.89       1
+            Political Suicide: Missteps, Peccadilloes, Bad Calls, Backroom Hijinx, Sordid Pasts, Rotten Breaks, and Just Plain Dumb Mistakes in the Annals of American Politics      36.28       2
+                                                                                                                                                                           Join      35.67       5
+                                                                                                                                                      Rip it Up and Start Again      35.02       5
+                                                                                                                                                                     Black Dust      34.53       5
+                                                                                                                                                 You can't bury them all: Poems      33.63       2
+                                                                                                                                          My Paris Kitchen: Recipes and Stories      33.37       2
+                                                                                                                             The Dirty Little Secrets of Getting Your Dream Job      33.34       4
+                                                                                                                                                                    Penny Maybe      33.29       3
+                                                                                                            The Activist's Tao Te Ching: Ancient Advice for a Modern Revolution      32.24       5
+                                                                                                                                                               When We Collided      31.77       1
+                                                                                                    Throwing Rocks at the Google Bus: How Growth Became the Enemy of Prosperity      31.12       3
+                                                                                                      The Five Love Languages: How to Express Heartfelt Commitment to Your Mate      31.05       3
+Foolproof Preserving: A Guide to Small Batch Jams, Jellies, Pickles, Condiments, and More: A Foolproof Guide to Making Small Batch Jams, Jellies, Pickles, Condiments, and More      30.52       3
+                                                                                                                                                          Reasons to Stay Alive      26.41       2
+                                                                         Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink      25.52       1
+                                                                                                                                                     Chase Me (Paris Nights #2)      25.27       5
+                                                                                                                                  Saga, Volume 6 (Saga (Collected Editions) #6)      25.02       3
+                         The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy      23.89       4
+                                                                                                                                                                           Olio      23.88       1
+                                                                                                                                                              The Elephant Tree      23.82       5
+                                                                                                             #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.      23.11       5
+                                                                                                                                                                The Requiem Red      22.65       1
+                                                                                 The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics      22.60       4
+                                                                    America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana      22.50       3
+                                                                                                                                      In the Country We Love: My Family Divided      22.00       4
+                                                                                                                                                          Shakespeare's Sonnets      20.66       4
+                                                                                             The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer      20.59       5
+
+================================================================================
+Query 2 - ORDER BY / LIMIT
+================================================================================
+SELECT
+            title,
+            price_gbp,
+            rating
+        FROM books
+        ORDER BY price_gbp DESC
+        LIMIT 10
+
+                                                                                                                          title  price_gbp  rating
+                                                                                   The Death of Humanity: and the Case for Life      58.11       4
+                                                                                                 Slow States of Collapse: Poems      57.31       3
+                                             Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991      57.25       3
+                                                                                                            The Past Never Ends      56.50       4
+The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!      56.41       1
+                                                                                                              Masks and Shadows      56.40       2
+                                                                                                The Secret of Dreadwillow Carse      56.13       1
+                                                                 The Electric Pencil: Drawings from Inside State Hospital No. 3      56.06       1
+                                                                                                  Birdsong: A Story in Pictures      54.64       3
+                                                                                          Sapiens: A Brief History of Humankind      54.23       5
+
+================================================================================
+Query 3 - DISTINCT
+================================================================================
+SELECT DISTINCT
+            rating
+        FROM books
+        ORDER BY rating
+
+ rating
+      1
+      2
+      3
+      4
+      5
+
+================================================================================
+Query 4 - BETWEEN
+================================================================================
+SELECT
+            title,
+            price_gbp
+        FROM books
+        WHERE price_gbp BETWEEN 10 AND 30
+        ORDER BY price_gbp
+
+                                                                                                                                                 title  price_gbp
+                                                                                                                                              Patience      10.16
+                                                                                                                                           In Her Wake      12.84
+                                                                                                      Princess Between Worlds (Wide-Awake Princess #5)      13.34
+                                                                     Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61
+                                                                                                        Starving Hearts (Triangular Trade Trilogy, #1)      13.99
+                                                                   Mama Tried: Traditional Italian Cooking for the Screwed, Crude, Vegan, and Tattooed      14.02
+                                                                                                                                   On a Midnight Clear      14.07
+                                                                                                               Untitled Collection: Sabbath Poems 2014      14.27
+                                                                                                                                     Obsidian (Lux #1)      14.86
+                                                                                                Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44
+                                                                                                                                        Sophie's World      15.94
+                                                                                               Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)      16.28
+                                                                The Life-Changing Magic of Tidying Up: The Japanese Art of Decluttering and Organizing      16.77
+                                                                                                                                                Thirst      17.27
+                                                                                                                                           Set Me Free      17.46
+                                                                                            The Four Agreements: A Practical Guide to Personal Freedom      17.66
+                                                               The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull      17.93
+                                                                                                        Maude (1883-1993):She Grew Up with the country      18.02
+                                                                                                                                        Unicorn Tracks      18.78
+                                                                                                                           Pop Gun War, Volume 1: Gift      18.97
+                                                                                                           The Torch Is Passed: A Harding Family Story      19.09
+                                                                                                                                       This One Summer      19.49
+                                                                                                                                  In a Dark, Dark Wood      19.63
+                                                                           The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind      19.73
+                                                                                     Reskilling America: Learning to Labor in the Twenty-First Century      19.83
+                                                                                               Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes #9-12)      19.92
+                                                                    The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer      20.59
+                                                                                                                                 Shakespeare's Sonnets      20.66
+                                                                                                             In the Country We Love: My Family Divided      22.00
+                                           America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana      22.50
+                                                        The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics      22.60
+                                                                                                                                       The Requiem Red      22.65
+                                                                                    #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.      23.11
+                                                                                                                                     The Elephant Tree      23.82
+                                                                                                                                                  Olio      23.88
+The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy      23.89
+                                                                                                         Saga, Volume 6 (Saga (Collected Editions) #6)      25.02
+                                                                                                                            Chase Me (Paris Nights #2)      25.27
+                                                Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink      25.52
+                                                                                                                                 Reasons to Stay Alive      26.41
+
+================================================================================
+Query 5 - IN
+================================================================================
+SELECT
+            title,
+            rating,
+            in_stock
+        FROM books
+        WHERE rating IN (4, 5)
+        ORDER BY rating DESC, title
+
+                                                                                                                                                 title  rating  in_stock
+                                                                                    #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.       5         1
+                                                                                                                                            Black Dust       5         1
+                                                                                                                            Chase Me (Paris Nights #2)       5         1
+                                                                                                                                                  Join       5         1
+                                                                                                      Princess Between Worlds (Wide-Awake Princess #5)       5         1
+                                                                     Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)       5         1
+                                                                                                                           Private Paris (Private #10)       5         1
+                                                                                                                             Rip it Up and Start Again       5         1
+                                                                                                                 Sapiens: A Brief History of Humankind       5         1
+                                                                                               Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)       5         1
+                                                                                                                                           Set Me Free       5         1
+                                                                                                                                        Sophie's World       5         1
+                                                                                   The Activist's Tao Te Ching: Ancient Advice for a Modern Revolution       5         1
+                                                                                                                                     The Elephant Tree       5         1
+                                                                                            The Four Agreements: A Practical Guide to Personal Freedom       5         1
+                                                                    The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer       5         1
+                                                                                                                                                Thirst       5         1
+                                                                                                                          We Love You, Charlie Freeman       5         1
+                                                                                               Worlds Elsewhere: Journeys Around Shakespeareâs Globe       5         1
+                                                                                                                                   Behind Closed Doors       4         1
+                                                                                                             In the Country We Love: My Family Divided       4         1
+                                                                   Mama Tried: Traditional Italian Cooking for the Screwed, Crude, Vegan, and Tattooed       4         1
+                                                                                                Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)       4         1
+                                                                                                                                 Shakespeare's Sonnets       4         1
+                                                                                                                                         Sharp Objects       4         1
+                                                                        Spark Joy: An Illustrated Master Class on the Art of Organizing and Tidying Up       4         1
+                                                        The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics       4         1
+                                                                                                          The Death of Humanity: and the Case for Life       4         1
+                                                                                                    The Dirty Little Secrets of Getting Your Dream Job       4         1
+The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy       4         1
+                                                                                             The Most Perfect Thing: Inside (and Outside) a Bird's Egg       4         1
+                                                                                                              The Nameless City (The Nameless City #1)       4         1
+                                                                                                                                   The Past Never Ends       4         1
+                                                                                                                                       This One Summer       4         1
+                                             Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness       4         1
+                                                                                                               Untitled Collection: Sabbath Poems 2014       4         1
+                                                                                                                                        Wall and Piece       4         1
+
+================================================================================
+Query 6 - JOIN
+================================================================================
+SELECT
+            b.book_id,
+            b.title,
+            b.price_gbp,
+            b.price_inr,
+            b.rating,
+            b.in_stock,
+            c.category_name
+        FROM books AS b
+        INNER JOIN categories AS c
+            ON b.category_id = c.category_id
+        ORDER BY b.book_id
+
+ book_id                                                                                                                                                                           title  price_gbp  price_inr  rating  in_stock      category_name
+       1                                                                                                                                                            A Light in the Attic      51.77    5461.74       3         1             Poetry
+       2                                                                                                                                                              Tipping the Velvet      53.74    5669.57       1         1 Historical Fiction
+       3                                                                                                                                                                      Soumission      50.10    5285.55       1         1            Fiction
+       4                                                                                                                                                                   Sharp Objects      47.82    5045.01       4         1            Mystery
+       5                                                                                                                                           Sapiens: A Brief History of Humankind      54.23    5721.27       5         1            History
+       6                                                                                                                                                                 The Requiem Red      22.65    2389.58       1         1        Young Adult
+       7                                                                                                                              The Dirty Little Secrets of Getting Your Dream Job      33.34    3517.37       4         1           Business
+       8                                                                                         The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull      17.93    1891.62       3         1            Default
+       9                                                                                  The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics      22.60    2384.30       4         1            Default
+      10                                                                                                                                                                 The Black Maria      52.15    5501.83       1         1             Poetry
+      11                                                                                                                                  Starving Hearts (Triangular Trade Trilogy, #1)      13.99    1475.95       2         1            Default
+      12                                                                                                                                                           Shakespeare's Sonnets      20.66    2179.63       4         1             Poetry
+      13                                                                                                                                                                     Set Me Free      17.46    1842.03       5         1        Young Adult
+      14                                                                                                                         Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)      52.29    5516.60       5         1     Sequential Art
+      15                                                                                                                                                       Rip it Up and Start Again      35.02    3694.61       5         1              Music
+      16                                                                                              Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991      57.25    6039.88       3         1              Music
+      17                                                                                                                                                                            Olio      23.88    2519.34       1         1             Poetry
+      18                                                                                                                           Mesaerion: The Best Science Fiction Stories 1800-1849      37.59    3965.75       1         1    Science Fiction
+      19                                                                                                                                                    Libertarianism for Beginners      51.33    5415.32       2         1           Politics
+      20                                                                                                                                                         It's Only the Himalayas      45.17    4765.44       2         1             Travel
+      21                                                                                                                                                                     In Her Wake      12.84    1354.62       1         1           Thriller
+      22                                                                                                                                                                 How Music Works      37.32    3937.26       2         1              Music
+      23 Foolproof Preserving: A Guide to Small Batch Jams, Jellies, Pickles, Condiments, and More: A Foolproof Guide to Making Small Batch Jams, Jellies, Pickles, Condiments, and More      30.52    3219.86       3         1     Food and Drink
+      24                                                                                                                                                      Chase Me (Paris Nights #2)      25.27    2665.99       5         1            Romance
+      25                                                                                                                                                                      Black Dust      34.53    3642.92       5         1            Romance
+      26                                                                                                                                                   Birdsong: A Story in Pictures      54.64    5764.52       3         1          Childrens
+      27                                                                     America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana      22.50    2373.75       3         1            Default
+      28                                                                                                                                                  Aladdin and His Wonderful Lamp      53.13    5605.22       3         1            Default
+      29                                                                                                                         Worlds Elsewhere: Journeys Around Shakespeareâs Globe      40.30    4251.65       5         1         Nonfiction
+      30                                                                                                                                                                  Wall and Piece      44.18    4660.99       4         1                Art
+      31                                                                                                                      The Four Agreements: A Practical Guide to Personal Freedom      17.66    1863.13       5         1       Spirituality
+      32                                                                                                       The Five Love Languages: How to Express Heartfelt Commitment to Your Mate      31.05    3275.78       3         1         Nonfiction
+      33                                                                                                                                                               The Elephant Tree      23.82    2513.01       5         1           Thriller
+      34                                                                                                                                                          The Bear and the Piano      36.89    3891.90       1         1          Childrens
+      35                                                                                                                                                                  Sophie's World      15.94    1681.67       5         1         Philosophy
+      36                                                                                                                                                                     Penny Maybe      33.29    3512.10       3         1            Default
+      37                                                                                                                                  Maude (1883-1993):She Grew Up with the country      18.02    1901.11       2         1            Default
+      38                                                                                                                                                            In a Dark, Dark Wood      19.63    2070.97       1         1            Mystery
+      39                                                                                                                                                             Behind Closed Doors      52.22    5509.21       4         1           Thriller
+      40                                                                                                                                                  You can't bury them all: Poems      33.63    3547.97       2         1             Poetry
+      41                                                                                                                                                  Slow States of Collapse: Poems      57.31    6046.21       3         1             Poetry
+      42                                                                                                                                                           Reasons to Stay Alive      26.41    2786.26       2         1         Nonfiction
+      43                                                                                                                                                     Private Paris (Private #10)      47.61    5022.86       5         1            Fiction
+      44                                                                                                              #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.      23.11    2438.11       5         1         Nonfiction
+      45                                                                                                                                                 Without Borders (Wanderlove #1)      45.07    4754.89       2         1          New Adult
+      46                                                                                                                                                                When We Collided      31.77    3351.74       1         1       Contemporary
+      47                                                                                                                                                    We Love You, Charlie Freeman      50.27    5303.49       5         1            Fiction
+      48                                                                                                                                         Untitled Collection: Sabbath Poems 2014      14.27    1505.49       4         1             Poetry
+      49                                                                       Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness      44.18    4660.99       4         1         Nonfiction
+      50                                                                                                                                                                  Unicorn Tracks      18.78    1981.29       3         1            Fantasy
+      51                                                                          Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink      25.52    2692.36       1         1            History
+      52                                                                                                                         Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)      16.28    1717.54       1         1     Sequential Art
+      53                                                                                                     Throwing Rocks at the Google Bus: How Growth Became the Enemy of Prosperity      31.12    3283.16       3         1         Nonfiction
+      54                                                                                                                                                                 This One Summer      19.49    2056.20       4         1     Sequential Art
+      55                                                                                                                                                                          Thirst      17.27    1821.99       5         1            Fiction
+      56                                                                                                                                     The Torch Is Passed: A Harding Family Story      19.09    2014.00       1         1      Add a comment
+      57                                                                                                                                                 The Secret of Dreadwillow Carse      56.13    5921.72       1         1          Childrens
+      58                                                 The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!      56.41    5951.26       1         1     Food and Drink
+      59                                                                                                                                                             The Past Never Ends      56.50    5960.75       4         1            Mystery
+      60                                                                                                                       The Natural History of Us (The Fine Art of Pretending #2)      45.22    4770.71       3         1        Young Adult
+      61                                                                                                                                        The Nameless City (The Nameless City #1)      38.16    4025.88       4         1     Sequential Art
+      62                                                                                                                               The Murder That Never Was (Forensic Instincts #5)      54.11    5708.61       3         1            Fiction
+      63                                                                                                                       The Most Perfect Thing: Inside (and Outside) a Bird's Egg      42.96    4532.28       4         1            Science
+      64                          The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy      23.89    2520.40       4         1      Add a comment
+      65                                                                                          The Life-Changing Magic of Tidying Up: The Japanese Art of Decluttering and Organizing      16.77    1769.24       3         1         Nonfiction
+      66                                                                                              The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer      20.59    2172.25       5         1            Default
+      67                                                                                                                       The Gutsy Girl: Escapades for Your Life of Epic Adventure      37.13    3917.22       1         1         Nonfiction
+      68                                                                                                                  The Electric Pencil: Drawings from Inside State Hospital No. 3      56.06    5914.33       1         1         Nonfiction
+      69                                                                                                                                    The Death of Humanity: and the Case for Life      58.11    6130.61       4         1         Philosophy
+      70                                                                                     The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life      49.05    5174.78       3         1             Health
+      71                                                                                                                                                                  The Art Forger      40.76    4300.18       3         1      Add a comment
+      72                                                                                                     The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind      19.73    2081.52       1         1            History
+      73                                                                                                             The Activist's Tao Te Ching: Ancient Advice for a Modern Revolution      32.24    3401.32       5         1       Spirituality
+      74                                                                                                  Spark Joy: An Illustrated Master Class on the Art of Organizing and Tidying Up      41.83    4413.07       4         1         Nonfiction
+      75                                                                                                                                                                     Soul Reader      39.58    4175.69       2         1            Default
+      76                                                                                                                                                                        Security      39.25    4140.88       2         1             Horror
+      77                                                                                                                                   Saga, Volume 6 (Saga (Collected Editions) #6)      25.02    2639.61       3         1            Fantasy
+      78                                                                                                                                   Saga, Volume 5 (Saga (Collected Editions) #5)      51.04    5384.72       2         1     Sequential Art
+      79                                                                                                               Reskilling America: Learning to Labor in the Twenty-First Century      19.83    2092.07       2         1         Nonfiction
+      80                                                                                                             Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) #11-15)      50.40    5317.20       3         1     Sequential Art
+      81                                                                                               Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61    1435.86       5         1     Sequential Art
+      82                                                                                                                                Princess Between Worlds (Wide-Awake Princess #5)      13.34    1407.37       5         1            Fantasy
+      83                                                                                                                                                     Pop Gun War, Volume 1: Gift      18.97    2001.34       1         1     Sequential Art
+      84             Political Suicide: Missteps, Peccadilloes, Bad Calls, Backroom Hijinx, Sordid Pasts, Rotten Breaks, and Just Plain Dumb Mistakes in the Annals of American Politics      36.28    3827.54       2         1            History
+      85                                                                                                                                                                        Patience      10.16    1071.88       3         1     Sequential Art
+      86                                                                                                                          Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44    1628.92       4         1     Sequential Art
+      87                                                                                                          orange: The Complete Collection 1 (orange: The Complete Collection #1)      48.41    5107.26       1         1     Sequential Art
+      88                                                                                                                         Online Marketing for Busy Authors: A Step-By-Step Guide      46.35    4889.93       1         1          Self Help
+      89                                                                                                                                                             On a Midnight Clear      14.07    1484.39       3         1      Add a comment
+      90                                                                                                                                                               Obsidian (Lux #1)      14.86    1567.73       2         1        Young Adult
+      91                                                                                                                                           My Paris Kitchen: Recipes and Stories      33.37    3520.54       2         1     Food and Drink
+      92                                                                                                                                                               Masks and Shadows      56.40    5950.20       2         1            Fantasy
+      93                                                                                             Mama Tried: Traditional Italian Cooking for the Screwed, Crude, Vegan, and Tattooed      14.02    1479.11       4         1     Food and Drink
+      94                                                                                                                   Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes #5-8)      46.91    4949.01       2         1     Sequential Art
+      95                                                                                                                  Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)      45.61    4811.86       3         1     Sequential Art
+      96                                                                                                                         Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes #9-12)      19.92    2101.56       2         1     Sequential Art
+      97                                                                                                                        Layered: Baking, Building, and Styling Spectacular Cakes      40.11    4231.61       1         1     Food and Drink
+      98                                                                                                           Judo: Seven Steps to Black Belt (an Introductory Guide for Beginners)      53.90    5686.45       2         1      Add a comment
+      99                                                                                                                                                                            Join      35.67    3763.19       5         1    Science Fiction
+     100                                                                                                                                       In the Country We Love: My Family Divided      22.00    2321.00       4         1         Nonfiction
+
+
+================================================================================
+PANDAS JOIN VERIFICATION
+================================================================================
+
+SQL JOIN RESULT
+
+ book_id                                                                                                                                                                           title  price_gbp  price_inr  rating  in_stock      category_name
+       1                                                                                                                                                            A Light in the Attic      51.77    5461.74       3         1             Poetry
+       2                                                                                                                                                              Tipping the Velvet      53.74    5669.57       1         1 Historical Fiction
+       3                                                                                                                                                                      Soumission      50.10    5285.55       1         1            Fiction
+       4                                                                                                                                                                   Sharp Objects      47.82    5045.01       4         1            Mystery
+       5                                                                                                                                           Sapiens: A Brief History of Humankind      54.23    5721.27       5         1            History
+       6                                                                                                                                                                 The Requiem Red      22.65    2389.58       1         1        Young Adult
+       7                                                                                                                              The Dirty Little Secrets of Getting Your Dream Job      33.34    3517.37       4         1           Business
+       8                                                                                         The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull      17.93    1891.62       3         1            Default
+       9                                                                                  The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics      22.60    2384.30       4         1            Default
+      10                                                                                                                                                                 The Black Maria      52.15    5501.83       1         1             Poetry
+      11                                                                                                                                  Starving Hearts (Triangular Trade Trilogy, #1)      13.99    1475.95       2         1            Default
+      12                                                                                                                                                           Shakespeare's Sonnets      20.66    2179.63       4         1             Poetry
+      13                                                                                                                                                                     Set Me Free      17.46    1842.03       5         1        Young Adult
+      14                                                                                                                         Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)      52.29    5516.60       5         1     Sequential Art
+      15                                                                                                                                                       Rip it Up and Start Again      35.02    3694.61       5         1              Music
+      16                                                                                              Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991      57.25    6039.88       3         1              Music
+      17                                                                                                                                                                            Olio      23.88    2519.34       1         1             Poetry
+      18                                                                                                                           Mesaerion: The Best Science Fiction Stories 1800-1849      37.59    3965.75       1         1    Science Fiction
+      19                                                                                                                                                    Libertarianism for Beginners      51.33    5415.32       2         1           Politics
+      20                                                                                                                                                         It's Only the Himalayas      45.17    4765.44       2         1             Travel
+      21                                                                                                                                                                     In Her Wake      12.84    1354.62       1         1           Thriller
+      22                                                                                                                                                                 How Music Works      37.32    3937.26       2         1              Music
+      23 Foolproof Preserving: A Guide to Small Batch Jams, Jellies, Pickles, Condiments, and More: A Foolproof Guide to Making Small Batch Jams, Jellies, Pickles, Condiments, and More      30.52    3219.86       3         1     Food and Drink
+      24                                                                                                                                                      Chase Me (Paris Nights #2)      25.27    2665.99       5         1            Romance
+      25                                                                                                                                                                      Black Dust      34.53    3642.92       5         1            Romance
+      26                                                                                                                                                   Birdsong: A Story in Pictures      54.64    5764.52       3         1          Childrens
+      27                                                                     America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana      22.50    2373.75       3         1            Default
+      28                                                                                                                                                  Aladdin and His Wonderful Lamp      53.13    5605.22       3         1            Default
+      29                                                                                                                         Worlds Elsewhere: Journeys Around Shakespeareâs Globe      40.30    4251.65       5         1         Nonfiction
+      30                                                                                                                                                                  Wall and Piece      44.18    4660.99       4         1                Art
+      31                                                                                                                      The Four Agreements: A Practical Guide to Personal Freedom      17.66    1863.13       5         1       Spirituality
+      32                                                                                                       The Five Love Languages: How to Express Heartfelt Commitment to Your Mate      31.05    3275.78       3         1         Nonfiction
+      33                                                                                                                                                               The Elephant Tree      23.82    2513.01       5         1           Thriller
+      34                                                                                                                                                          The Bear and the Piano      36.89    3891.90       1         1          Childrens
+      35                                                                                                                                                                  Sophie's World      15.94    1681.67       5         1         Philosophy
+      36                                                                                                                                                                     Penny Maybe      33.29    3512.10       3         1            Default
+      37                                                                                                                                  Maude (1883-1993):She Grew Up with the country      18.02    1901.11       2         1            Default
+      38                                                                                                                                                            In a Dark, Dark Wood      19.63    2070.97       1         1            Mystery
+      39                                                                                                                                                             Behind Closed Doors      52.22    5509.21       4         1           Thriller
+      40                                                                                                                                                  You can't bury them all: Poems      33.63    3547.97       2         1             Poetry
+      41                                                                                                                                                  Slow States of Collapse: Poems      57.31    6046.21       3         1             Poetry
+      42                                                                                                                                                           Reasons to Stay Alive      26.41    2786.26       2         1         Nonfiction
+      43                                                                                                                                                     Private Paris (Private #10)      47.61    5022.86       5         1            Fiction
+      44                                                                                                              #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.      23.11    2438.11       5         1         Nonfiction
+      45                                                                                                                                                 Without Borders (Wanderlove #1)      45.07    4754.89       2         1          New Adult
+      46                                                                                                                                                                When We Collided      31.77    3351.74       1         1       Contemporary
+      47                                                                                                                                                    We Love You, Charlie Freeman      50.27    5303.49       5         1            Fiction
+      48                                                                                                                                         Untitled Collection: Sabbath Poems 2014      14.27    1505.49       4         1             Poetry
+      49                                                                       Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness      44.18    4660.99       4         1         Nonfiction
+      50                                                                                                                                                                  Unicorn Tracks      18.78    1981.29       3         1            Fantasy
+      51                                                                          Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink      25.52    2692.36       1         1            History
+      52                                                                                                                         Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)      16.28    1717.54       1         1     Sequential Art
+      53                                                                                                     Throwing Rocks at the Google Bus: How Growth Became the Enemy of Prosperity      31.12    3283.16       3         1         Nonfiction
+      54                                                                                                                                                                 This One Summer      19.49    2056.20       4         1     Sequential Art
+      55                                                                                                                                                                          Thirst      17.27    1821.99       5         1            Fiction
+      56                                                                                                                                     The Torch Is Passed: A Harding Family Story      19.09    2014.00       1         1      Add a comment
+      57                                                                                                                                                 The Secret of Dreadwillow Carse      56.13    5921.72       1         1          Childrens
+      58                                                 The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!      56.41    5951.26       1         1     Food and Drink
+      59                                                                                                                                                             The Past Never Ends      56.50    5960.75       4         1            Mystery
+      60                                                                                                                       The Natural History of Us (The Fine Art of Pretending #2)      45.22    4770.71       3         1        Young Adult
+      61                                                                                                                                        The Nameless City (The Nameless City #1)      38.16    4025.88       4         1     Sequential Art
+      62                                                                                                                               The Murder That Never Was (Forensic Instincts #5)      54.11    5708.61       3         1            Fiction
+      63                                                                                                                       The Most Perfect Thing: Inside (and Outside) a Bird's Egg      42.96    4532.28       4         1            Science
+      64                          The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy      23.89    2520.40       4         1      Add a comment
+      65                                                                                          The Life-Changing Magic of Tidying Up: The Japanese Art of Decluttering and Organizing      16.77    1769.24       3         1         Nonfiction
+      66                                                                                              The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer      20.59    2172.25       5         1            Default
+      67                                                                                                                       The Gutsy Girl: Escapades for Your Life of Epic Adventure      37.13    3917.22       1         1         Nonfiction
+      68                                                                                                                  The Electric Pencil: Drawings from Inside State Hospital No. 3      56.06    5914.33       1         1         Nonfiction
+      69                                                                                                                                    The Death of Humanity: and the Case for Life      58.11    6130.61       4         1         Philosophy
+      70                                                                                     The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life      49.05    5174.78       3         1             Health
+      71                                                                                                                                                                  The Art Forger      40.76    4300.18       3         1      Add a comment
+      72                                                                                                     The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind      19.73    2081.52       1         1            History
+      73                                                                                                             The Activist's Tao Te Ching: Ancient Advice for a Modern Revolution      32.24    3401.32       5         1       Spirituality
+      74                                                                                                  Spark Joy: An Illustrated Master Class on the Art of Organizing and Tidying Up      41.83    4413.07       4         1         Nonfiction
+      75                                                                                                                                                                     Soul Reader      39.58    4175.69       2         1            Default
+      76                                                                                                                                                                        Security      39.25    4140.88       2         1             Horror
+      77                                                                                                                                   Saga, Volume 6 (Saga (Collected Editions) #6)      25.02    2639.61       3         1            Fantasy
+      78                                                                                                                                   Saga, Volume 5 (Saga (Collected Editions) #5)      51.04    5384.72       2         1     Sequential Art
+      79                                                                                                               Reskilling America: Learning to Labor in the Twenty-First Century      19.83    2092.07       2         1         Nonfiction
+      80                                                                                                             Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) #11-15)      50.40    5317.20       3         1     Sequential Art
+      81                                                                                               Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61    1435.86       5         1     Sequential Art
+      82                                                                                                                                Princess Between Worlds (Wide-Awake Princess #5)      13.34    1407.37       5         1            Fantasy
+      83                                                                                                                                                     Pop Gun War, Volume 1: Gift      18.97    2001.34       1         1     Sequential Art
+      84             Political Suicide: Missteps, Peccadilloes, Bad Calls, Backroom Hijinx, Sordid Pasts, Rotten Breaks, and Just Plain Dumb Mistakes in the Annals of American Politics      36.28    3827.54       2         1            History
+      85                                                                                                                                                                        Patience      10.16    1071.88       3         1     Sequential Art
+      86                                                                                                                          Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44    1628.92       4         1     Sequential Art
+      87                                                                                                          orange: The Complete Collection 1 (orange: The Complete Collection #1)      48.41    5107.26       1         1     Sequential Art
+      88                                                                                                                         Online Marketing for Busy Authors: A Step-By-Step Guide      46.35    4889.93       1         1          Self Help
+      89                                                                                                                                                             On a Midnight Clear      14.07    1484.39       3         1      Add a comment
+      90                                                                                                                                                               Obsidian (Lux #1)      14.86    1567.73       2         1        Young Adult
+      91                                                                                                                                           My Paris Kitchen: Recipes and Stories      33.37    3520.54       2         1     Food and Drink
+      92                                                                                                                                                               Masks and Shadows      56.40    5950.20       2         1            Fantasy
+      93                                                                                             Mama Tried: Traditional Italian Cooking for the Screwed, Crude, Vegan, and Tattooed      14.02    1479.11       4         1     Food and Drink
+      94                                                                                                                   Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes #5-8)      46.91    4949.01       2         1     Sequential Art
+      95                                                                                                                  Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)      45.61    4811.86       3         1     Sequential Art
+      96                                                                                                                         Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes #9-12)      19.92    2101.56       2         1     Sequential Art
+      97                                                                                                                        Layered: Baking, Building, and Styling Spectacular Cakes      40.11    4231.61       1         1     Food and Drink
+      98                                                                                                           Judo: Seven Steps to Black Belt (an Introductory Guide for Beginners)      53.90    5686.45       2         1      Add a comment
+      99                                                                                                                                                                            Join      35.67    3763.19       5         1    Science Fiction
+     100                                                                                                                                       In the Country We Love: My Family Divided      22.00    2321.00       4         1         Nonfiction
+
+PANDAS MERGE RESULT
+
+ book_id                                                                                                                                                                           title  price_gbp  price_inr  rating  in_stock      category_name
+       1                                                                                                                                                            A Light in the Attic      51.77    5461.74       3         1             Poetry
+       2                                                                                                                                                              Tipping the Velvet      53.74    5669.57       1         1 Historical Fiction
+       3                                                                                                                                                                      Soumission      50.10    5285.55       1         1            Fiction
+       4                                                                                                                                                                   Sharp Objects      47.82    5045.01       4         1            Mystery
+       5                                                                                                                                           Sapiens: A Brief History of Humankind      54.23    5721.27       5         1            History
+       6                                                                                                                                                                 The Requiem Red      22.65    2389.58       1         1        Young Adult
+       7                                                                                                                              The Dirty Little Secrets of Getting Your Dream Job      33.34    3517.37       4         1           Business
+       8                                                                                         The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull      17.93    1891.62       3         1            Default
+       9                                                                                  The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics      22.60    2384.30       4         1            Default
+      10                                                                                                                                                                 The Black Maria      52.15    5501.83       1         1             Poetry
+      11                                                                                                                                  Starving Hearts (Triangular Trade Trilogy, #1)      13.99    1475.95       2         1            Default
+      12                                                                                                                                                           Shakespeare's Sonnets      20.66    2179.63       4         1             Poetry
+      13                                                                                                                                                                     Set Me Free      17.46    1842.03       5         1        Young Adult
+      14                                                                                                                         Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)      52.29    5516.60       5         1     Sequential Art
+      15                                                                                                                                                       Rip it Up and Start Again      35.02    3694.61       5         1              Music
+      16                                                                                              Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991      57.25    6039.88       3         1              Music
+      17                                                                                                                                                                            Olio      23.88    2519.34       1         1             Poetry
+      18                                                                                                                           Mesaerion: The Best Science Fiction Stories 1800-1849      37.59    3965.75       1         1    Science Fiction
+      19                                                                                                                                                    Libertarianism for Beginners      51.33    5415.32       2         1           Politics
+      20                                                                                                                                                         It's Only the Himalayas      45.17    4765.44       2         1             Travel
+      21                                                                                                                                                                     In Her Wake      12.84    1354.62       1         1           Thriller
+      22                                                                                                                                                                 How Music Works      37.32    3937.26       2         1              Music
+      23 Foolproof Preserving: A Guide to Small Batch Jams, Jellies, Pickles, Condiments, and More: A Foolproof Guide to Making Small Batch Jams, Jellies, Pickles, Condiments, and More      30.52    3219.86       3         1     Food and Drink
+      24                                                                                                                                                      Chase Me (Paris Nights #2)      25.27    2665.99       5         1            Romance
+      25                                                                                                                                                                      Black Dust      34.53    3642.92       5         1            Romance
+      26                                                                                                                                                   Birdsong: A Story in Pictures      54.64    5764.52       3         1          Childrens
+      27                                                                     America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana      22.50    2373.75       3         1            Default
+      28                                                                                                                                                  Aladdin and His Wonderful Lamp      53.13    5605.22       3         1            Default
+      29                                                                                                                         Worlds Elsewhere: Journeys Around Shakespeareâs Globe      40.30    4251.65       5         1         Nonfiction
+      30                                                                                                                                                                  Wall and Piece      44.18    4660.99       4         1                Art
+      31                                                                                                                      The Four Agreements: A Practical Guide to Personal Freedom      17.66    1863.13       5         1       Spirituality
+      32                                                                                                       The Five Love Languages: How to Express Heartfelt Commitment to Your Mate      31.05    3275.78       3         1         Nonfiction
+      33                                                                                                                                                               The Elephant Tree      23.82    2513.01       5         1           Thriller
+      34                                                                                                                                                          The Bear and the Piano      36.89    3891.90       1         1          Childrens
+      35                                                                                                                                                                  Sophie's World      15.94    1681.67       5         1         Philosophy
+      36                                                                                                                                                                     Penny Maybe      33.29    3512.10       3         1            Default
+      37                                                                                                                                  Maude (1883-1993):She Grew Up with the country      18.02    1901.11       2         1            Default
+      38                                                                                                                                                            In a Dark, Dark Wood      19.63    2070.97       1         1            Mystery
+      39                                                                                                                                                             Behind Closed Doors      52.22    5509.21       4         1           Thriller
+      40                                                                                                                                                  You can't bury them all: Poems      33.63    3547.97       2         1             Poetry
+      41                                                                                                                                                  Slow States of Collapse: Poems      57.31    6046.21       3         1             Poetry
+      42                                                                                                                                                           Reasons to Stay Alive      26.41    2786.26       2         1         Nonfiction
+      43                                                                                                                                                     Private Paris (Private #10)      47.61    5022.86       5         1            Fiction
+      44                                                                                                              #HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.      23.11    2438.11       5         1         Nonfiction
+      45                                                                                                                                                 Without Borders (Wanderlove #1)      45.07    4754.89       2         1          New Adult
+      46                                                                                                                                                                When We Collided      31.77    3351.74       1         1       Contemporary
+      47                                                                                                                                                    We Love You, Charlie Freeman      50.27    5303.49       5         1            Fiction
+      48                                                                                                                                         Untitled Collection: Sabbath Poems 2014      14.27    1505.49       4         1             Poetry
+      49                                                                       Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness      44.18    4660.99       4         1         Nonfiction
+      50                                                                                                                                                                  Unicorn Tracks      18.78    1981.29       3         1            Fantasy
+      51                                                                          Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink      25.52    2692.36       1         1            History
+      52                                                                                                                         Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)      16.28    1717.54       1         1     Sequential Art
+      53                                                                                                     Throwing Rocks at the Google Bus: How Growth Became the Enemy of Prosperity      31.12    3283.16       3         1         Nonfiction
+      54                                                                                                                                                                 This One Summer      19.49    2056.20       4         1     Sequential Art
+      55                                                                                                                                                                          Thirst      17.27    1821.99       5         1            Fiction
+      56                                                                                                                                     The Torch Is Passed: A Harding Family Story      19.09    2014.00       1         1      Add a comment
+      57                                                                                                                                                 The Secret of Dreadwillow Carse      56.13    5921.72       1         1          Childrens
+      58                                                 The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!      56.41    5951.26       1         1     Food and Drink
+      59                                                                                                                                                             The Past Never Ends      56.50    5960.75       4         1            Mystery
+      60                                                                                                                       The Natural History of Us (The Fine Art of Pretending #2)      45.22    4770.71       3         1        Young Adult
+      61                                                                                                                                        The Nameless City (The Nameless City #1)      38.16    4025.88       4         1     Sequential Art
+      62                                                                                                                               The Murder That Never Was (Forensic Instincts #5)      54.11    5708.61       3         1            Fiction
+      63                                                                                                                       The Most Perfect Thing: Inside (and Outside) a Bird's Egg      42.96    4532.28       4         1            Science
+      64                          The Mindfulness and Acceptance Workbook for Anxiety: A Guide to Breaking Free from Anxiety, Phobias, and Worry Using Acceptance and Commitment Therapy      23.89    2520.40       4         1      Add a comment
+      65                                                                                          The Life-Changing Magic of Tidying Up: The Japanese Art of Decluttering and Organizing      16.77    1769.24       3         1         Nonfiction
+      66                                                                                              The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer      20.59    2172.25       5         1            Default
+      67                                                                                                                       The Gutsy Girl: Escapades for Your Life of Epic Adventure      37.13    3917.22       1         1         Nonfiction
+      68                                                                                                                  The Electric Pencil: Drawings from Inside State Hospital No. 3      56.06    5914.33       1         1         Nonfiction
+      69                                                                                                                                    The Death of Humanity: and the Case for Life      58.11    6130.61       4         1         Philosophy
+      70                                                                                     The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life      49.05    5174.78       3         1             Health
+      71                                                                                                                                                                  The Art Forger      40.76    4300.18       3         1      Add a comment
+      72                                                                                                     The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind      19.73    2081.52       1         1            History
+      73                                                                                                             The Activist's Tao Te Ching: Ancient Advice for a Modern Revolution      32.24    3401.32       5         1       Spirituality
+      74                                                                                                  Spark Joy: An Illustrated Master Class on the Art of Organizing and Tidying Up      41.83    4413.07       4         1         Nonfiction
+      75                                                                                                                                                                     Soul Reader      39.58    4175.69       2         1            Default
+      76                                                                                                                                                                        Security      39.25    4140.88       2         1             Horror
+      77                                                                                                                                   Saga, Volume 6 (Saga (Collected Editions) #6)      25.02    2639.61       3         1            Fantasy
+      78                                                                                                                                   Saga, Volume 5 (Saga (Collected Editions) #5)      51.04    5384.72       2         1     Sequential Art
+      79                                                                                                               Reskilling America: Learning to Labor in the Twenty-First Century      19.83    2092.07       2         1         Nonfiction
+      80                                                                                                             Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) #11-15)      50.40    5317.20       3         1     Sequential Art
+      81                                                                                               Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)      13.61    1435.86       5         1     Sequential Art
+      82                                                                                                                                Princess Between Worlds (Wide-Awake Princess #5)      13.34    1407.37       5         1            Fantasy
+      83                                                                                                                                                     Pop Gun War, Volume 1: Gift      18.97    2001.34       1         1     Sequential Art
+      84             Political Suicide: Missteps, Peccadilloes, Bad Calls, Backroom Hijinx, Sordid Pasts, Rotten Breaks, and Just Plain Dumb Mistakes in the Annals of American Politics      36.28    3827.54       2         1            History
+      85                                                                                                                                                                        Patience      10.16    1071.88       3         1     Sequential Art
+      86                                                                                                                          Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)      15.44    1628.92       4         1     Sequential Art
+      87                                                                                                          orange: The Complete Collection 1 (orange: The Complete Collection #1)      48.41    5107.26       1         1     Sequential Art
+      88                                                                                                                         Online Marketing for Busy Authors: A Step-By-Step Guide      46.35    4889.93       1         1          Self Help
+      89                                                                                                                                                             On a Midnight Clear      14.07    1484.39       3         1      Add a comment
+      90                                                                                                                                                               Obsidian (Lux #1)      14.86    1567.73       2         1        Young Adult
+      91                                                                                                                                           My Paris Kitchen: Recipes and Stories      33.37    3520.54       2         1     Food and Drink
+      92                                                                                                                                                               Masks and Shadows      56.40    5950.20       2         1            Fantasy
+      93                                                                                             Mama Tried: Traditional Italian Cooking for the Screwed, Crude, Vegan, and Tattooed      14.02    1479.11       4         1     Food and Drink
+      94                                                                                                                   Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes #5-8)      46.91    4949.01       2         1     Sequential Art
+      95                                                                                                                  Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)      45.61    4811.86       3         1     Sequential Art
+      96                                                                                                                         Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes #9-12)      19.92    2101.56       2         1     Sequential Art
+      97                                                                                                                        Layered: Baking, Building, and Styling Spectacular Cakes      40.11    4231.61       1         1     Food and Drink
+      98                                                                                                           Judo: Seven Steps to Black Belt (an Introductory Guide for Beginners)      53.90    5686.45       2         1      Add a comment
+      99                                                                                                                                                                            Join      35.67    3763.19       5         1    Science Fiction
+     100                                                                                                                                       In the Country We Love: My Family Divided      22.00    2321.00       4         1         Nonfiction
+
+SQL JOIN == pandas.merge: True
