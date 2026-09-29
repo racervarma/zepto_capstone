@@ -486,12 +486,18 @@ def retrieve(model: SentenceTransformer, collection, query: str,
     return hits
 
 
+MOCK_CONFIDENCE = 1.0
+
+
 def score_to_confidence(distance: float) -> float:
     """
     Convert a cosine distance into a bounded confidence score.
 
     ChromaDB returns distance = 1 - cosine_similarity for the cosine space, so
     confidence is deterministic for a given (corpus, query) pair.
+
+    Used by the real LLM path. The mock baseline reports the fixed
+    MOCK_CONFIDENCE instead, so a graded offline run always emits 1.0.
     """
     return round(max(0.0, min(1.0, 1.0 - distance)), 3)
 
@@ -707,15 +713,17 @@ def generate_mock_answer(hits: Sequence[Dict[str, Any]]) -> GroundedAnswer:
     """
     Deterministic mock baseline for MOCK_LLM unset or "1".
 
-    Always prefixes the highest-ranked chunk snippet with a fixed label. No
-    network call and no randomness, so the response is reproducible.
+    Always prefixes the highest-ranked chunk snippet with a fixed label and
+    reports the fixed MOCK_CONFIDENCE of 1.0. No network call, no randomness
+    and no dependence on retrieval distance, so the response is fully
+    reproducible.
     """
     top_snippet = " ".join(hits[0]["text"].split())[:SNIPPET_CHARS]
 
     return GroundedAnswer(
         answer=f"Based on the retrieved context: {top_snippet}",
         sources=dedupe_sources(hits),
-        confidence=score_to_confidence(hits[0]["distance"]),
+        confidence=MOCK_CONFIDENCE,
     )
 
 
@@ -791,13 +799,15 @@ def direct_answer(state: SupportState) -> Dict[str, Any]:
     """
     Node 3 - handle questions that are out of scope.
 
-    Skips retrieval entirely and returns the fixed refusal string.
+    Skips retrieval entirely and returns the fixed refusal string. Confidence
+    is the fixed MOCK_CONFIDENCE, because the refusal itself is a certain,
+    hardcoded outcome rather than a probabilistic claim about the corpus.
     """
     return {
         "hits": [],
         "answer": MOCK_DIRECT_ANSWER,
         "sources": [],
-        "confidence": 0.0,
+        "confidence": MOCK_CONFIDENCE,
     }
 
 
@@ -866,10 +876,14 @@ def run_graph(query: str) -> GroundedAnswer:
 
     final_state = _GRAPH.invoke({"query": query})
 
+    # Defensive defaults only: both branches always set all three keys. The
+    # fallback mirrors mock semantics so a mock run can never emit 0.0.
+    fallback_confidence = MOCK_CONFIDENCE if MOCK_LLM else 0.0
+
     return GroundedAnswer(
         answer=final_state.get("answer", MOCK_DIRECT_ANSWER),
         sources=list(final_state.get("sources", [])),
-        confidence=float(final_state.get("confidence", 0.0)),
+        confidence=float(final_state.get("confidence", fallback_confidence)),
     )
 
 

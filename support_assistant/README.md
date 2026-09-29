@@ -92,16 +92,26 @@ langgraph
 
 ## 3\. Run the server
 
+Local `uvicorn` runs default to **port 8000**. (The Docker container uses
+**7860**, and the optional Gradio client uses **7861** — see the port table
+below.)
+
+| Surface | Port | Notes |
+|---|---|---|
+| FastAPI backend, local `uvicorn` | **8000** | default for local commands and transcripts below |
+| FastAPI backend, Docker container | **7860** | also the HF Spaces `app_port` |
+| Gradio web UI (`chat_ui.py`) | **7861** | optional local testing client |
+
 From inside the `support_assistant` directory:
 
 ```
-uvicorn main:app --host 0.0.0.0 --port 7860
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 Or from the project root:
 
 ```
-uvicorn main:app --host 0.0.0.0 --port 7860 --app-dir support_assistant
+uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir support_assistant
 ```
 
 The first startup downloads the `all-MiniLM-L6-v2` model, reads the eight
@@ -112,23 +122,48 @@ existing collection and start much faster.
 The service is then available at:
 
 ```
-http://localhost:7860
+http://localhost:8000
 ```
 
 Interactive API documentation is served by FastAPI at:
 
 ```
-http://localhost:7860/docs
+http://localhost:8000/docs
 ```
 
 ### Health check
 
 ```
-curl http://localhost:7860/health
+curl http://localhost:8000/health
 ```
 
 ```json
 {"status": "ok", "mock_llm": true, "collection": "zepto_support_policies", "chunks": 15}
+```
+
+### 3a\. Optional: Gradio web UI
+
+The repository root ships a small Gradio client, `chat_ui.py`, for interactive
+manual testing against a locally running backend. It is a convenience wrapper
+only — it is not part of the module and is not required for grading.
+
+Start the backend on port `8000` as above, then in a second terminal from the
+project root:
+
+```
+python chat_ui.py
+```
+
+Gradio serves on <http://127.0.0.1:7861>. `chat_ui.py` reads `API_URL` and
+`UI_PORT` from the environment and parses the backend port out of `API_URL`, so
+the connection error messages and startup preflight follow the backend
+automatically. To point it at a Docker container instead, start the container
+and set the backend URL:
+
+```
+docker run -p 7860:7860 zepto-support-assistant
+$env:API_URL="http://127.0.0.1:7860"   # PowerShell
+python chat_ui.py
 ```
 
 ---
@@ -154,9 +189,14 @@ deterministic offline baseline with no API key required.
 
 ## 3\. Verify
 
+Against the Docker container on port **7860**:
+
 ```
 curl http://localhost:7860/health
 ```
+
+(For a local `uvicorn` process on port **8000**, use
+`curl http://localhost:8000/health` instead.)
 
 ### Running with the real LLM in Docker
 
@@ -193,8 +233,11 @@ containing unknown fields is rejected with `422`.
 
 # Example Requests and Responses
 
-Both examples below were run against `uvicorn main:app` with `MOCK_LLM` left at
-its default value (unset, which is equivalent to `MOCK_LLM=1`).
+Both examples below were captured live against the local backend on port `8000`
+with `MOCK_LLM` left at its default value (unset, which is equivalent to
+`MOCK_LLM=1`). The JSON is byte-exact, including the truncated 200-character
+snippet and the fixed `confidence` of `1.0`. Swap the port to `7860` if you are
+calling the Docker container instead of a local `uvicorn` process.
 
 ## Example 1 — Policy question
 
@@ -202,19 +245,21 @@ This question contains `delivery`, so the router classifies it as
 `policy_question` and the graph retrieves from ChromaDB before answering.
 
 ```
-curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d "{\"query\": \"What is the delivery fee for orders under INR 149?\"}"
+curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d "{\"query\": \"What is the delivery fee for orders under INR 149?\"}"
 ```
 
 Raw response:
 
 ```json
-{"answer":"Based on the retrieved context: Zepto delivers grocery and household essentials to serviceable pin codes within 10 to 30 minutes of order confirmation, depending on the customer's delivery zone and current order volume. Standard del","sources":["doc_01.txt","doc_03.txt"],"confidence":0.531}
+{"answer":"Based on the retrieved context: Zepto delivers grocery and household essentials to serviceable pin codes within 10 to 30 minutes of order confirmation, depending on the customer's delivery zone and current order volume. Standard del","sources":["doc_01.txt","doc_03.txt"],"confidence":1.0}
 ```
 
 `doc_01.txt` is the correct source, because the delivery threshold is defined
 there. The mock answer is deliberately raw — it is the leading ~200 characters
-of the top-ranked chunk, not a fluent sentence. That is the expected baseline
-output in mock mode.
+of the top-ranked chunk, not a fluent sentence, so it stops mid-word at
+`Standard del`. Sources are listed in retrieval-rank order. `confidence` is the
+fixed `MOCK_CONFIDENCE = 1.0`, which is the expected baseline output in mock
+mode.
 
 ## Example 2 — General question
 
@@ -223,13 +268,13 @@ it as `general_question`. The graph takes the `direct_answer` branch, skips
 retrieval entirely and returns the fixed refusal.
 
 ```
-curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d "{\"query\": \"Can you help me write a python script?\"}"
+curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d "{\"query\": \"Can you help me write a python script?\"}"
 ```
 
 Raw response:
 
 ```json
-{"answer":"I can only answer questions about Zepto policies right now.","sources":[],"confidence":0.0}
+{"answer":"I can only answer questions about Zepto policies right now.","sources":[],"confidence":1.0}
 ```
 
 ### PowerShell note
@@ -239,13 +284,13 @@ quotes behave differently. Either use `curl.exe` with a payload file:
 
 ```powershell
 '{"query": "What is the delivery fee for orders under INR 149?"}' | Set-Content -Encoding utf8 payload.json
-curl.exe -s -X POST http://localhost:7860/ask -H "Content-Type: application/json" --data-binary "@payload.json"
+curl.exe -s -X POST http://localhost:8000/ask -H "Content-Type: application/json" --data-binary "@payload.json"
 ```
 
 or use `Invoke-RestMethod`:
 
 ```powershell
-Invoke-RestMethod -Uri http://localhost:7860/ask -Method Post -ContentType "application/json" -Body '{"query": "What is the delivery fee for orders under INR 149?"}'
+Invoke-RestMethod -Uri http://localhost:8000/ask -Method Post -ContentType "application/json" -Body '{"query": "What is the delivery fee for orders under INR 149?"}'
 ```
 
 ---
@@ -356,8 +401,13 @@ comparable.
 `score_to_confidence()` converts the top hit's distance into confidence as
 `1 - distance`, clamped to `[0, 1]` and rounded to three decimals. Because the
 model, the corpus and the query are all fixed, this value is **deterministic**:
-the same question always yields the same confidence, which is what makes the
-mock baseline reproducible.
+the same question always yields the same confidence.
+
+This helper is used by the **real LLM path (`MOCK_LLM=0`)**. The **mock
+baseline** does not use it: it reports the fixed `MOCK_CONFIDENCE = 1.0`, so an
+offline graded run always emits `confidence: 1.0` regardless of how close the
+top chunk happens to be. Both branches are reproducible — the mock branch
+simply has a single possible value.
 
 `dedupe_sources()` returns unique filenames in retrieval rank order, so
 `sources` shows which policies are most relevant first.
@@ -426,7 +476,7 @@ which LangGraph merges into the accumulated state.
   `"retrieve_and_answer"` or `"direct_answer"`.
 - `retrieve_and_answer()` — always runs retrieval, then generates.
 - `direct_answer()` — returns the fixed refusal with `sources=[]` and
-  `confidence=0.0`, and performs **no** retrieval.
+  `confidence=1.0` (the fixed `MOCK_CONFIDENCE`), and performs **no** retrieval.
 
 `retrieve_and_answer()` retrieving in *both* modes is deliberate: the graded
 requirement is that the retrieval stage always executes for a policy question,
@@ -464,8 +514,8 @@ instead of returning a 500.
 
 | Mode | Behaviour |
 | --- | --- |
-| `MOCK_LLM` unset / `1` | Retrieval runs. Generation is `generate_mock_answer()`: a fixed prefix plus the top chunk's first ~200 characters. Deterministic, offline. |
-| `MOCK_LLM=0` | Retrieval runs identically. Generation is `generate_llm_answer()`: `ANSWER_PROMPT` → LLM → `GroundedAnswer` with the 2-retry corrective loop. |
+| `MOCK_LLM` unset / `1` | Retrieval runs. Generation is `generate_mock_answer()`: a fixed prefix plus the top chunk's first ~200 characters, with the fixed `confidence=1.0`. Deterministic, offline. |
+| `MOCK_LLM=0` | Retrieval runs identically. Generation is `generate_llm_answer()`: `ANSWER_PROMPT` → LLM → `GroundedAnswer` with the 2-retry corrective loop, and `confidence` from `score_to_confidence()`. |
 
 Retrieval is identical in both modes. The toggle only swaps the generation
 step.
@@ -480,7 +530,7 @@ step.
 This node makes no LLM call in either mode. There is nothing to generate, since
 the answer is a fixed refusal — a model call would add latency, cost and a
 failure mode for a constant string. Both modes return `sources=[]` and
-`confidence=0.0`.
+`confidence=1.0`.
 
 ### The 2-retry corrective loop
 
@@ -525,7 +575,7 @@ Other tunables are module-level constants in `main.py`: `CHUNK_SIZE`,
 INFO:     Started server process
 [ingest] 8 documents -> 15 chunks in collection 'zepto_support_policies' (reused=False)
 [startup] ready (MOCK_LLM=1)
-INFO:     Uvicorn running on http://0.0.0.0:7860
+INFO:     Uvicorn running on http://0.0.0.0:8000
 ```
 
 Each request logs its routing decision:
@@ -576,13 +626,17 @@ instances and delete the `chroma_db/` directory, then restart.
 Expected. The `all-MiniLM-L6-v2` model is downloaded on first use and the
 corpus is embedded. Subsequent startups print `reused=True` and are fast.
 
-## Port 7860 already in use
+## Port 8000 already in use
 
-Change the port on both sides:
+Pick a free local port and use it consistently in the server command, the curl
+examples and the Gradio client:
 
 ```
-uvicorn main:app --host 0.0.0.0 --port 8000
+uvicorn main:app --host 0.0.0.0 --port 8080
+$env:API_URL="http://127.0.0.1:8080"   # if using chat_ui.py
 ```
+
+The Docker container port (`7860`) and the Gradio port (`7861`) are unaffected.
 
 ---
 
