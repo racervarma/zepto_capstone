@@ -1,20 +1,18 @@
-Absolutely — here is a complete `README.md` tailored to your Zepto Capstone analytics pipeline.
+# Zepto Capstone – Titanic Analytics & Machine Learning Pipeline
 
- # Zepto Capstone – Titanic Analytics & Machine Learning Pipeline
+A complete end-to-end analytics and machine learning pipeline built using the **Seaborn Titanic dataset**.
 
- A complete end-to-end analytics and machine learning pipeline built using the **Seaborn Titanic dataset**.
-
- The project covers data loading, data profiling, missing-value treatment, exploratory data analysis, correlation analysis, visualization, classification, class-imbalance handling, hyperparameter tuning, regression, model persistence, and prediction using a reloaded production-style pipeline.
+The project covers data loading, data profiling, missing-value treatment, exploratory data analysis, correlation analysis, visualization, classification, class-imbalance handling, hyperparameter tuning, regression, model persistence, and prediction using a reloaded production-style pipeline.
 
 ---
 
- ## Project Overview
+## Project Overview
 
- This project analyzes the Titanic passenger dataset and builds machine learning models to predict passenger survival.
+This project analyzes the Titanic passenger dataset and builds machine learning models to predict passenger survival.
 
- The pipeline performs the following:
+The pipeline performs the following:
 
- 1. Loads the Titanic dataset exactly once using Seaborn.
+1. Loads the Titanic dataset exactly once using Seaborn.
 2. Saves the raw dataset as `analytics/titanic.csv`.
 3. Profiles the dataset.
 4. Analyzes and handles missing values.
@@ -25,42 +23,42 @@ Absolutely — here is a complete `README.md` tailored to your Zepto Capstone an
 9. Performs a standardization sanity check.
 10. Builds classification pipelines for:
 
- - Logistic Regression
+- Logistic Regression
 - Decision Tree
 - Random Forest
 
- 11. Evaluates classification performance using:
+11. Evaluates classification performance using:
 
- - Accuracy
+- Accuracy
 - Precision
 - Recall
 - F1 Score
 - ROC AUC
 - Confusion Matrix
 
- 12. Compares class-imbalance strategies:
+12. Compares class-imbalance strategies:
 
- - Baseline Random Forest
+- Baseline Random Forest
 - Class-weighted Random Forest
 - SMOTE Random Forest
 
- 13. Tunes a Random Forest using `GridSearchCV`.
+13. Tunes a Random Forest using `GridSearchCV`.
 14. Builds a multivariable Linear Regression model to predict fare.
 15. Calculates:
 
- - MAE
+- MAE
 - RMSE
 - R²
 - Adjusted R²
 
- 16. Saves the complete tuned classification pipeline using Joblib.
+16. Saves the complete tuned classification pipeline using Joblib.
 17. Reloads the saved pipeline.
 18. Tests the reloaded pipeline using raw input data.
 19. Generates all project artifacts inside the `analytics/` directory.
 
 ---
 
- ## Project Structure
+### Project Structure
 
 ```
 zepto_capstone/
@@ -84,21 +82,21 @@ zepto_capstone/
 └── requirements.txt
 ```
 
- > Generated files such as `titanic.csv`, PNG visualizations, and `model_pipeline.pkl` are created automatically when the pipeline runs.
+> Generated files such as `titanic.csv`, PNG visualizations, and `model_pipeline.pkl` are created automatically when the pipeline runs.
 
 ---
 
- ## Dataset
+### Dataset
 
- The project uses the Titanic dataset provided by Seaborn:
+The project uses the Titanic dataset provided by Seaborn:
 
 ```
 df = sns.load_dataset("titanic")
 ```
 
- The dataset contains passenger information such as:
+The dataset contains passenger information such as:
 
- | Feature | Description |
+| Feature | Description |
 | --- | --- |
 | `survived` | Survival indicator |
 | `pclass` | Passenger class |
@@ -123,13 +121,13 @@ analytics/titanic.csv
 
 ---
 
- ## Data Cleaning
+### Data Cleaning
 
- The pipeline follows a missing-value strategy based on the percentage of missing observations.
+The pipeline follows a missing-value strategy based on the percentage of missing observations.
 
- ### Missing-value rules
+#### Missing-value rules
 
- | Missing percentage | Treatment |
+| Missing percentage | Treatment |
 | --- | --- |
 | `< 5%` | Drop affected rows |
 | `5% – 30%` | Impute values |
@@ -137,13 +135,13 @@ analytics/titanic.csv
 
 For the Titanic dataset:
 
- - `age` has approximately 20% missing values and is median-imputed.
+- `age` has approximately 20% missing values and is median-imputed.
 - `embarked` has less than 5% missing values, so affected rows are removed.
 - `deck` has more than 30% missing values and missing observations are encoded as `"missing"`.
 
- ### Categorical missing-value handling
+#### Categorical missing-value handling
 
- Because Seaborn's `deck` column is a Pandas categorical column, the `"missing"` category is explicitly added before filling missing values.
+Because Seaborn's `deck` column is a Pandas categorical column, the `"missing"` category is explicitly added before filling missing values.
 
 ```
 if isinstance(cleaned[column].dtype, pd.CategoricalDtype):
@@ -156,7 +154,7 @@ if isinstance(cleaned[column].dtype, pd.CategoricalDtype):
 cleaned[column] = cleaned[column].fillna("missing")
 ```
 
- This prevents the Pandas error:
+This prevents the Pandas error:
 
 ```
 TypeError:
@@ -165,62 +163,62 @@ Cannot setitem on a Categorical with a new category (missing)
 
 ---
 
- # Exploratory Data Analysis
+## Exploratory Data Analysis
 
- ## Univariate Analysis
+### Univariate Analysis
 
- The pipeline analyzes the distributions of:
+The pipeline analyzes the distributions of:
 
- - Age
+- Age
 - Fare
 
- For each variable, the pipeline calculates IQR-based outliers.
+For each variable, the pipeline calculates IQR-based outliers.
 
- For fare, it also calculates:
+For fare, it also calculates:
 
- - Mean
+- Mean
 - Median
 - Mode
 
- The resulting visualization is saved as:
+The resulting visualization is saved as:
 
 ```
 analytics/univariate.png
 ```
 
- The visualization contains:
+The visualization contains:
 
- - Age histogram
+- Age histogram
 - Age boxplot
 - Fare histogram
 - Fare boxplot
 
 ---
 
- ## Bivariate Analysis
+### Bivariate Analysis
 
- Survival rates are calculated using boolean masking rather than relying exclusively on `groupby()`.
+Survival rates are calculated using boolean masking rather than relying exclusively on `groupby()`.
 
- The pipeline calculates survival rates by:
+The pipeline calculates survival rates by:
 
- 1. Sex
+1. Sex
 2. Passenger class
 3. Sex + passenger class
 
- Example:
+Example:
 
 ```
 mask = df["sex"] == value
 rate = df.loc[mask, "survived"].mean()
 ```
 
- This provides a direct comparison of survival outcomes across passenger groups.
+This provides a direct comparison of survival outcomes across passenger groups.
 
 ---
 
- # Correlation Analysis
+## Correlation Analysis
 
- The following numeric variables are analyzed:
+The following numeric variables are analyzed:
 
 ```
 survived
@@ -231,61 +229,61 @@ parch
 fare
 ```
 
- A Pearson correlation matrix is calculated.
+A Pearson correlation matrix is calculated.
 
- The resulting heatmap is saved as:
+The resulting heatmap is saved as:
 
 ```
 analytics/corr_heatmap.png
 ```
 
- The pipeline also identifies the two strongest absolute correlations among the selected numeric variables.
+The pipeline also identifies the two strongest absolute correlations among the selected numeric variables.
 
 ---
 
- # Data Story Visualizations
+## Data Story Visualizations
 
- Four visualizations are generated.
+Four visualizations are generated.
 
- ## Story 1 – Survival by Sex
+### Story 1 – Survival by Sex
 
- Shows survival rates for male and female passengers.
+Shows survival rates for male and female passengers.
 
- Output:
+Output:
 
 ```
 analytics/story_1.png
 ```
 
- ## Story 2 – Survival by Passenger Class
+### Story 2 – Survival by Passenger Class
 
- Shows survival rates across passenger classes.
+Shows survival rates across passenger classes.
 
- Output:
+Output:
 
 ```
 analytics/story_2.png
 ```
 
- ## Story 3 – Survival by Sex and Passenger Class
+### Story 3 – Survival by Sex and Passenger Class
 
- Combines sex and passenger class to provide a more granular survival comparison.
+Combines sex and passenger class to provide a more granular survival comparison.
 
- Output:
+Output:
 
 ```
 analytics/story_3.png
 ```
 
- ## Story 4 – Age, Fare and Survival
+### Story 4 – Age, Fare and Survival
 
- A scatter plot showing:
+A scatter plot showing:
 
- - Age
+- Age
 - Fare
 - Survival status
 
- Output:
+Output:
 
 ```
 analytics/story_4.png
@@ -293,41 +291,41 @@ analytics/story_4.png
 
 ---
 
- # Standardization Sanity Check
+## Standardization Sanity Check
 
- The pipeline performs a manual standardization check on:
+The pipeline performs a manual standardization check on:
 
- - Age
+- Age
 - Fare
 
- The transformation is:
+The transformation is:
 
 ```
 z = (x - mean) / standard_deviation
 ```
 
- The script prints the mean and standard deviation before and after standardization.
+The script prints the mean and standard deviation before and after standardization.
 
- Expected behavior after standardization:
+Expected behavior after standardization:
 
 ```
 Mean ≈ 0
 Standard deviation ≈ 1
 ```
 
- This provides a sanity check that the standardization calculation is functioning correctly.
+This provides a sanity check that the standardization calculation is functioning correctly.
 
 ---
 
- # Classification
+## Classification
 
- The target variable is:
+The target variable is:
 
 ```
 survived
 ```
 
- The classification features are:
+The classification features are:
 
 ```
 pclass
@@ -339,7 +337,7 @@ fare
 embarked
 ```
 
- The data is divided into training and testing sets using a stratified split:
+The data is divided into training and testing sets using a stratified split:
 
 ```
 train_test_split(
@@ -351,13 +349,13 @@ train_test_split(
 )
 ```
 
- Stratification preserves the approximate class distribution between the training and testing datasets.
+Stratification preserves the approximate class distribution between the training and testing datasets.
 
 ---
 
- # Preprocessing Pipeline
+## Preprocessing Pipeline
 
- Numerical variables are processed using:
+Numerical variables are processed using:
 
 ```
 Median Imputation
@@ -365,7 +363,7 @@ Median Imputation
 StandardScaler
 ```
 
- Categorical variables are processed using:
+Categorical variables are processed using:
 
 ```
 Most-Frequent Imputation
@@ -373,17 +371,17 @@ Most-Frequent Imputation
 OneHotEncoder
 ```
 
- The complete preprocessing structure is implemented using `ColumnTransformer`.
+The complete preprocessing structure is implemented using `ColumnTransformer`.
 
- This prevents preprocessing from being performed manually outside the machine learning pipeline.
+This prevents preprocessing from being performed manually outside the machine learning pipeline.
 
 ---
 
- # Classification Models
+## Classification Models
 
- Three classification algorithms are evaluated.
+Three classification algorithms are evaluated.
 
- ## Logistic Regression
+### Logistic Regression
 
 ```
 LogisticRegression(
@@ -392,7 +390,7 @@ LogisticRegression(
 )
 ```
 
- ## Decision Tree
+### Decision Tree
 
 ```
 DecisionTreeClassifier(
@@ -401,7 +399,7 @@ DecisionTreeClassifier(
 )
 ```
 
- ## Random Forest
+### Random Forest
 
 ```
 RandomForestClassifier(
@@ -411,37 +409,37 @@ RandomForestClassifier(
 )
 ```
 
- Each model is combined with the preprocessing pipeline.
+Each model is combined with the preprocessing pipeline.
 
 ---
 
- # Classification Evaluation
+## Classification Evaluation
 
- The models are evaluated using:
+The models are evaluated using:
 
- ### Accuracy
+### Accuracy
 
- Percentage of correctly classified observations.
+Percentage of correctly classified observations.
 
- ### Precision
+#### Precision
 
- Measures how many predicted positive cases were actually positive.
+Measures how many predicted positive cases were actually positive.
 
- ### Recall
+#### Recall
 
- Measures how many actual positive cases were correctly identified.
+Measures how many actual positive cases were correctly identified.
 
- ### F1 Score
+#### F1 Score
 
- Harmonic mean of precision and recall.
+Harmonic mean of precision and recall.
 
- ### ROC AUC
+#### ROC AUC
 
- Measures discrimination between the two target classes based on predicted probabilities.
+Measures discrimination between the two target classes based on predicted probabilities.
 
- ### Confusion Matrix
+#### Confusion Matrix
 
- Displays:
+Displays:
 
 ```
 True Negative
@@ -452,43 +450,43 @@ True Positive
 
 ---
 
- # Decision Tree Visualization
+## Decision Tree Visualization
 
- The fitted Decision Tree is visualized using Scikit-learn's `plot_tree()`.
+The fitted Decision Tree is visualized using Scikit-learn's `plot_tree()`.
 
- The tree visualization is saved as:
+The tree visualization is saved as:
 
 ```
 analytics/tree.png
 ```
 
- The pipeline obtains the transformed feature names from the fitted `ColumnTransformer`.
+The pipeline obtains the transformed feature names from the fitted `ColumnTransformer`.
 
 ---
 
- # Class Imbalance Analysis
+## Class Imbalance Analysis
 
- Three Random Forest strategies are compared.
+Three Random Forest strategies are compared.
 
- ## 1\. Baseline Random Forest
+### 1\. Baseline Random Forest
 
- Uses the standard Random Forest configuration.
+Uses the standard Random Forest configuration.
 
- ## 2\. Class-Weighted Random Forest
+### 2\. Class-Weighted Random Forest
 
- Uses:
+Uses:
 
 ```
 class_weight="balanced"
 ```
 
- This adjusts the model's treatment of the target classes based on their frequencies.
+This adjusts the model's treatment of the target classes based on their frequencies.
 
- ## 3\. SMOTE Random Forest
+### 3\. SMOTE Random Forest
 
- Uses Synthetic Minority Oversampling Technique.
+Uses Synthetic Minority Oversampling Technique.
 
- The pipeline is:
+The pipeline is:
 
 ```
 Preprocessor
@@ -498,21 +496,21 @@ SMOTE
 Random Forest
 ```
 
- SMOTE is placed inside the `imblearn` pipeline so that oversampling is performed as part of the model-training process rather than manually before splitting the data.
+SMOTE is placed inside the `imblearn` pipeline so that oversampling is performed as part of the model-training process rather than manually before splitting the data.
 
- The three approaches are compared using:
+The three approaches are compared using:
 
- - Precision
+- Precision
 - Recall
 - F1 Score
 
 ---
 
- # Random Forest Hyperparameter Tuning
+## Random Forest Hyperparameter Tuning
 
- A `GridSearchCV` search is performed for the Random Forest.
+A `GridSearchCV` search is performed for the Random Forest.
 
- The parameter grid contains:
+The parameter grid contains:
 
 ```
 param_grid = {
@@ -522,37 +520,37 @@ param_grid = {
 }
 ```
 
- This produces a systematic search across different Random Forest configurations.
+This produces a systematic search across different Random Forest configurations.
 
- The model is evaluated using:
+The model is evaluated using:
 
 ```
 scoring="f1"
 ```
 
- and:
+and:
 
 ```
 cv=5
 ```
 
- The best estimator is refitted automatically.
+The best estimator is refitted automatically.
 
- The tuned Random Forest is then evaluated on the held-out test set.
+The tuned Random Forest is then evaluated on the held-out test set.
 
- The pipeline also reports the Random Forest out-of-bag score.
+The pipeline also reports the Random Forest out-of-bag score.
 
 ---
 
- # Fare Regression
+## Fare Regression
 
- A separate regression model predicts:
+A separate regression model predicts:
 
 ```
 fare
 ```
 
- using:
+using:
 
 ```
 pclass
@@ -563,61 +561,61 @@ parch
 embarked
 ```
 
- The model is:
+The model is:
 
 ```
 LinearRegression()
 ```
 
- Categorical variables are one-hot encoded, while numeric variables are median-imputed.
+Categorical variables are one-hot encoded, while numeric variables are median-imputed.
 
 ---
 
- # Regression Evaluation
+## Regression Evaluation
 
- The regression model is evaluated using four metrics.
+The regression model is evaluated using four metrics.
 
- ## MAE
+### MAE
 
- Mean Absolute Error measures the average absolute difference between predicted and actual fares.
+Mean Absolute Error measures the average absolute difference between predicted and actual fares.
 
- ## RMSE
+### RMSE
 
- Root Mean Squared Error gives greater weight to larger prediction errors.
+Root Mean Squared Error gives greater weight to larger prediction errors.
 
- ## R²
+### R²
 
- R-squared measures the proportion of variance explained by the regression model.
+R-squared measures the proportion of variance explained by the regression model.
 
- ## Adjusted R²
+### Adjusted R²
 
- Adjusted R-squared accounts for the number of predictors in the model.
+Adjusted R-squared accounts for the number of predictors in the model.
 
- The formula used is:
+The formula used is:
 
 ```
 Adjusted R² =
 1 - ((1 - R²) × (n - 1) / (n - p - 1))
 ```
 
- where:
+where:
 
- - `n` = number of observations
+- `n` = number of observations
 - `p` = number of predictors
 
 ---
 
- # Regression Residual Analysis
+## Regression Residual Analysis
 
- Residuals are calculated as:
+Residuals are calculated as:
 
 ```
 Residual = Actual Fare - Predicted Fare
 ```
 
- A residual scatter plot is generated to examine the relationship between predicted values and residual errors.
+A residual scatter plot is generated to examine the relationship between predicted values and residual errors.
 
- Output:
+Output:
 
 ```
 analytics/residuals.png
@@ -625,9 +623,9 @@ analytics/residuals.png
 
 ---
 
- # Model Persistence
+## Model Persistence
 
- The tuned Random Forest pipeline is saved using Joblib:
+The tuned Random Forest pipeline is saved using Joblib:
 
 ```
 joblib.dump(
@@ -636,13 +634,13 @@ joblib.dump(
 )
 ```
 
- Output:
+Output:
 
 ```
 analytics/model_pipeline.pkl
 ```
 
- The saved artifact contains the complete preprocessing and machine learning pipeline, including:
+The saved artifact contains the complete preprocessing and machine learning pipeline, including:
 
 ```
 Raw input
@@ -658,13 +656,13 @@ Tuned Random Forest
 Prediction
 ```
 
- This allows raw DataFrames to be passed directly to the saved model.
+This allows raw DataFrames to be passed directly to the saved model.
 
 ---
 
- # Model Reload Test
+## Model Reload Test
 
- After saving the model, the pipeline is reloaded:
+After saving the model, the pipeline is reloaded:
 
 ```
 reloaded_pipeline = joblib.load(
@@ -672,7 +670,7 @@ reloaded_pipeline = joblib.load(
 )
 ```
 
- A raw passenger record is then supplied:
+A raw passenger record is then supplied:
 
 ```
 fake_raw_data = pd.DataFrame(
@@ -690,57 +688,57 @@ fake_raw_data = pd.DataFrame(
 )
 ```
 
- The reloaded model produces:
+The reloaded model produces:
 
- - Survival prediction
+- Survival prediction
 - Survival probability
 
- This confirms that the persisted pipeline can be used independently after being reloaded.
+This confirms that the persisted pipeline can be used independently after being reloaded.
 
 ---
 
- # Installation
+## Installation
 
- ## 1\. Clone or download the project
+### 1\. Clone or download the project
 
- Place the project in a local directory.
+Place the project in a local directory.
 
- Example:
+Example:
 
 ```
 zepto_capstone/
 ```
 
- ## 2\. Create a virtual environment
+### 2\. Create a virtual environment
 
- Windows:
+Windows:
 
 ```
 python -m venv venv
 ```
 
- Activate it:
+Activate it:
 
 ```
 venv\Scripts\activate
 ```
 
- Linux/macOS:
+Linux/macOS:
 
 ```
 python3 -m venv venv
 source venv/bin/activate
 ```
 
- ## 3\. Install dependencies
+### 3\. Install dependencies
 
- Install the required packages:
+Install the required packages:
 
 ```
 pip install pandas numpy seaborn matplotlib scikit-learn imbalanced-learn joblib
 ```
 
- Alternatively, create a `requirements.txt` file containing:
+Alternatively, create a `requirements.txt` file containing:
 
 ```
 pandas
@@ -752,7 +750,7 @@ imbalanced-learn
 joblib
 ```
 
- Then run:
+Then run:
 
 ```
 pip install -r requirements.txt
@@ -760,17 +758,17 @@ pip install -r requirements.txt
 
 ---
 
- # Running the Pipeline
+## Running the Pipeline
 
- From the project directory:
+From the project directory:
 
 ```
 python analytics/analytics_pipeline.py
 ```
 
- The script will:
+The script will:
 
- 1. Load the Titanic dataset.
+1. Load the Titanic dataset.
 2. Save the raw CSV.
 3. Clean the data.
 4. Generate analysis output.
@@ -785,9 +783,9 @@ python analytics/analytics_pipeline.py
 
 ---
 
- # Expected Output
+## Expected Output
 
- During execution, the terminal displays sections such as:
+During execution, the terminal displays sections such as:
 
 ```
 ================================================================================
@@ -795,7 +793,7 @@ PART A - DATA LOADING
 ================================================================================
 ```
 
- followed by:
+followed by:
 
 ```
 DATA INFO
@@ -811,15 +809,15 @@ STANDARDIZATION CHECK
 PART B - PREDICTIVE MODELING
 ```
 
- The pipeline subsequently reports classification metrics, imbalance comparisons, Random Forest tuning results, regression metrics, and model persistence results.
+The pipeline subsequently reports classification metrics, imbalance comparisons, Random Forest tuning results, regression metrics, and model persistence results.
 
 ---
 
- # Generated Artifacts
+## Generated Artifacts
 
- After a successful run, the `analytics/` directory contains:
+After a successful run, the `analytics/` directory contains:
 
- | File | Purpose |
+| File | Purpose |
 | --- | --- |
 | `titanic.csv` | Raw Titanic dataset |
 | `univariate.png` | Age and fare distribution analysis |
@@ -834,9 +832,9 @@ PART B - PREDICTIVE MODELING
 
 ---
 
- # Technologies Used
+## Technologies Used
 
- - **Python**
+- **Python**
 - **Pandas** – data manipulation and analysis
 - **NumPy** – numerical computation
 - **Seaborn** – dataset loading and visualization
@@ -847,9 +845,9 @@ PART B - PREDICTIVE MODELING
 
 ---
 
- # Machine Learning Workflow
+## Machine Learning Workflow
 
- The overall workflow can be summarized as:
+The overall workflow can be summarized as:
 
 ```
 Titanic Dataset
@@ -893,49 +891,49 @@ Exploratory Analysis  Modeling
 
 ---
 
- # Reproducibility
+## Reproducibility
 
- The project uses fixed random seeds in the machine learning workflow, including:
+The project uses fixed random seeds in the machine learning workflow, including:
 
 ```
 random_state=42
 ```
 
- This is used for:
+This is used for:
 
- - Train/test splitting
+- Train/test splitting
 - Decision Tree
 - Random Forest
 - SMOTE
 - Random Forest grid search
 
- This improves reproducibility across executions, subject to differences in library versions and execution environments.
+This improves reproducibility across executions, subject to differences in library versions and execution environments.
 
 ---
 
- # Important Design Decisions
+## Important Design Decisions
 
- ### Raw data is loaded exactly once
+### Raw data is loaded exactly once
 
- The dataset is loaded only through:
+The dataset is loaded only through:
 
 ```
 sns.load_dataset("titanic")
 ```
 
- The resulting DataFrame is immediately saved to CSV.
+The resulting DataFrame is immediately saved to CSV.
 
- ### Data leakage is minimized
+#### Data leakage is minimized
 
- Preprocessing for machine learning is performed inside Scikit-learn pipelines.
+Preprocessing for machine learning is performed inside Scikit-learn pipelines.
 
- This ensures transformations such as imputation, scaling, and encoding are fitted as part of the training process.
+This ensures transformations such as imputation, scaling, and encoding are fitted as part of the training process.
 
- ### SMOTE is inside the modeling pipeline
+#### SMOTE is inside the modeling pipeline
 
- SMOTE is not applied to the entire dataset before train/test splitting.
+SMOTE is not applied to the entire dataset before train/test splitting.
 
- Instead:
+Instead:
 
 ```
 Training data
@@ -947,28 +945,28 @@ SMOTE
 Random Forest
 ```
 
- This avoids contaminating the test set with synthetic observations.
+This avoids contaminating the test set with synthetic observations.
 
- ### Redundant target variables are excluded
+#### Redundant target variables are excluded
 
- The classification model predicts `survived`, so directly duplicative variables such as `alive` are not included.
+The classification model predicts `survived`, so directly duplicative variables such as `alive` are not included.
 
 ---
 
- # Troubleshooting
+## Troubleshooting
 
- ## `Cannot setitem on a Categorical`
+### `Cannot setitem on a Categorical`
 
- If you see:
+If you see:
 
 ```
 TypeError:
 Cannot setitem on a Categorical with a new category (missing)
 ```
 
- the issue occurs when assigning `"missing"` to a Pandas categorical column.
+the issue occurs when assigning `"missing"` to a Pandas categorical column.
 
- Add the category first:
+Add the category first:
 
 ```
 if "missing" not in cleaned[column].cat.categories:
@@ -982,29 +980,29 @@ cleaned[column] = cleaned[column].fillna("missing")
 
 ---
 
- ## `sparse_output` is not recognized
+### `sparse_output` is not recognized
 
- If your Scikit-learn version does not support:
+If your Scikit-learn version does not support:
 
 ```
 sparse_output=False
 ```
 
- use:
+use:
 
 ```
 sparse=False
 ```
 
- instead.
+instead.
 
- The `sparse_output` parameter is used by newer Scikit-learn versions.
+The `sparse_output` parameter is used by newer Scikit-learn versions.
 
 ---
 
- ## SMOTE is not installed
+### SMOTE is not installed
 
- Install `imbalanced-learn`:
+Install `imbalanced-learn`:
 
 ```
 pip install imbalanced-learn
@@ -1012,15 +1010,15 @@ pip install imbalanced-learn
 
 ---
 
- ## Model file not found
+### Model file not found
 
- Run the complete pipeline first:
+Run the complete pipeline first:
 
 ```
 python analytics/analytics_pipeline.py
 ```
 
- The model is generated automatically at:
+The model is generated automatically at:
 
 ```
 analytics/model_pipeline.pkl
@@ -1028,13 +1026,13 @@ analytics/model_pipeline.pkl
 
 ---
 
- # Conclusion
+## Conclusion
 
- This project demonstrates a complete analytics and machine learning workflow using the Titanic dataset.
+This project demonstrates a complete analytics and machine learning workflow using the Titanic dataset.
 
- It combines:
+It combines:
 
- - Data engineering
+- Data engineering
 - Data cleaning
 - Exploratory data analysis
 - Statistical analysis
@@ -1048,4 +1046,4 @@ analytics/model_pipeline.pkl
 - Model reloading
 - Prediction on raw data
 
- The final output is a reusable machine learning pipeline that combines preprocessing and the tuned Random Forest model into a single persisted artifact.
+The final output is a reusable machine learning pipeline that combines preprocessing and the tuned Random Forest model into a single persisted artifact.

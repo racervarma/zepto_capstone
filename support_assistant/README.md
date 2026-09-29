@@ -9,7 +9,9 @@ pinned: false
 ---
 
 # Zepto Data & AI Platform — Module 3
-# Support Assistant (RAG + LangGraph + FastAPI)
+
+**Support Assistant (RAG + LangGraph + FastAPI)**
+
 
 This module implements a retrieval-augmented generation (RAG) support assistant that answers Zepto policy questions.
 
@@ -25,7 +27,7 @@ The corpus is a set of eight hand-written Zepto policy documents covering delive
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```
 support_assistant/
@@ -51,9 +53,9 @@ support_assistant/
 
 ---
 
-# Setup and Run — Without Docker
+## Setup and Run — Without Docker
 
-## 1\. Create and activate a virtual environment
+### 1\. Create and activate a virtual environment
 
 From the project root:
 
@@ -73,7 +75,7 @@ Linux/macOS:
 source venv/bin/activate
 ```
 
-## 2\. Install dependencies
+### 2\. Install dependencies
 
 ```
 pip install -r support_assistant/requirements.txt
@@ -90,7 +92,7 @@ chromadb
 langgraph
 ```
 
-## 3\. Run the server
+### 3\. Run the server
 
 Local `uvicorn` runs default to **port 8000**. (The Docker container uses
 **7860**, and the optional Gradio client uses **7861** — see the port table
@@ -131,7 +133,7 @@ Interactive API documentation is served by FastAPI at:
 http://localhost:8000/docs
 ```
 
-### Health check
+#### Health check
 
 ```
 curl http://localhost:8000/health
@@ -141,7 +143,7 @@ curl http://localhost:8000/health
 {"status": "ok", "mock_llm": true, "collection": "zepto_support_policies", "chunks": 15}
 ```
 
-### 3a\. Optional: Gradio web UI
+#### 3a\. Optional: Gradio web UI
 
 The repository root ships a small Gradio client, `chat_ui.py`, for interactive
 manual testing against a locally running backend. It is a convenience wrapper
@@ -168,9 +170,9 @@ python chat_ui.py
 
 ---
 
-# Setup and Run — With Docker
+## Setup and Run — With Docker
 
-## 1\. Build the image
+### 1\. Build the image
 
 From inside the `support_assistant` directory:
 
@@ -178,7 +180,7 @@ From inside the `support_assistant` directory:
 docker build -t zepto-support-assistant .
 ```
 
-## 2\. Run the container
+### 2\. Run the container
 
 ```
 docker run -p 7860:7860 zepto-support-assistant
@@ -187,7 +189,7 @@ docker run -p 7860:7860 zepto-support-assistant
 The `Dockerfile` sets `MOCK_LLM=1` by default, so the container runs the
 deterministic offline baseline with no API key required.
 
-## 3\. Verify
+### 3\. Verify
 
 Against the Docker container on port **7860**:
 
@@ -198,7 +200,7 @@ curl http://localhost:7860/health
 (For a local `uvicorn` process on port **8000**, use
 `curl http://localhost:8000/health` instead.)
 
-### Running with the real LLM in Docker
+#### Running with the real LLM in Docker
 
 ```
 docker run -p 7860:7860 -e MOCK_LLM=0 -e GROQ_API_KEY=your_key_here zepto-support-assistant
@@ -206,9 +208,9 @@ docker run -p 7860:7860 -e MOCK_LLM=0 -e GROQ_API_KEY=your_key_here zepto-suppor
 
 ---
 
-# API
+## API
 
-## `POST /ask`
+### `POST /ask`
 
 **Request**
 
@@ -231,7 +233,7 @@ containing unknown fields is rejected with `422`.
 
 ---
 
-# Example Requests and Responses
+## Example Requests and Responses
 
 Both examples below were captured live against the local backend on port `8000`
 with `MOCK_LLM` left at its default value (unset, which is equivalent to
@@ -239,7 +241,7 @@ with `MOCK_LLM` left at its default value (unset, which is equivalent to
 snippet and the fixed `confidence` of `1.0`. Swap the port to `7860` if you are
 calling the Docker container instead of a local `uvicorn` process.
 
-## Example 1 — Policy question
+### Example 1 — Policy question
 
 This question contains `delivery`, so the router classifies it as
 `policy_question` and the graph retrieves from ChromaDB before answering.
@@ -261,7 +263,7 @@ of the top-ranked chunk, not a fluent sentence, so it stops mid-word at
 fixed `MOCK_CONFIDENCE = 1.0`, which is the expected baseline output in mock
 mode.
 
-## Example 2 — General question
+### Example 2 — General question
 
 This question contains none of the routing keywords, so the router classifies
 it as `general_question`. The graph takes the `direct_answer` branch, skips
@@ -277,7 +279,7 @@ Raw response:
 {"answer":"I can only answer questions about Zepto policies right now.","sources":[],"confidence":1.0}
 ```
 
-### PowerShell note
+#### PowerShell note
 
 In Windows PowerShell, `curl` is an alias for `Invoke-WebRequest` and nested
 quotes behave differently. Either use `curl.exe` with a payload file:
@@ -295,9 +297,9 @@ Invoke-RestMethod -Uri http://localhost:8000/ask -Method Post -ContentType "appl
 
 ---
 
-# Architecture
+## Architecture
 
-## Data flow
+### Data flow
 
 ```
 docs/*.txt
@@ -327,7 +329,7 @@ GroundedAnswer { answer, sources, confidence }
 POST /ask  →  HTTP 200 JSON
 ```
 
-## Which component handles which stage
+### Which component handles which stage
 
 | Stage | Function | Runs |
 | --- | --- | --- |
@@ -342,7 +344,7 @@ POST /ask  →  HTTP 200 JSON
 | Validation | `GroundedAnswer`, `AskRequest` | Per request |
 | Transport | `ask()` endpoint | Per request |
 
-## Ingestion and embedding
+### Ingestion and embedding
 
 `initialize()` runs once from the FastAPI `lifespan` hook, so the corpus is
 embedded exactly one time per process and never on the request path.
@@ -365,7 +367,7 @@ similarity is computed directly. Embeddings are passed to ChromaDB explicitly
 rather than relying on a registered embedding function, which keeps the vector
 space under the application's control.
 
-## ChromaDB initialization
+### ChromaDB initialization
 
 ChromaDB is the component most likely to fail silently or loudly on the first
 run, so initialisation is handled defensively:
@@ -391,7 +393,7 @@ The startup log reports which path was taken:
 [ingest] 8 documents -> 15 chunks in collection 'zepto_support_policies' (reused=True)
 ```
 
-## Retrieval
+### Retrieval
 
 `retrieve()` embeds the question with the same model used at ingestion and
 queries ChromaDB for the top 3 chunks. The query embeddings are L2-normalised
@@ -412,7 +414,7 @@ simply has a single possible value.
 `dedupe_sources()` returns unique filenames in retrieval rank order, so
 `sources` shows which policies are most relevant first.
 
-## Generation
+### Generation
 
 In mock mode, `generate_mock_answer()` returns:
 
@@ -428,7 +430,7 @@ In real mode, `generate_llm_answer()` renders the structured `ANSWER_PROMPT`
 with the numbered context block and the question, and validates the completion
 into `GroundedAnswer`.
 
-### The prompt
+#### The prompt
 
 `ANSWER_PROMPT` is assembled from six labelled sections:
 
@@ -446,7 +448,7 @@ The `CONSTRAINT` line is the negative instruction: the model is explicitly
 forbidden from falling back on pretrained knowledge of Zepto, and is
 instructed to answer from the retrieved context alone.
 
-## The LangGraph state machine
+### The LangGraph state machine
 
 State is a `TypedDict` (`SupportState`) carrying `query`, `intent`, `route`,
 `hits`, `answer`, `sources` and `confidence`. Each node returns a partial dict,
@@ -483,13 +485,13 @@ requirement is that the retrieval stage always executes for a policy question,
 and keeping retrieval unconditional means the mock baseline genuinely
 exercises the vector store rather than stubbing it out.
 
-## How the MOCK_LLM toggle changes behaviour
+### How the MOCK_LLM toggle changes behaviour
 
 `MOCK_LLM` is read once at import time as `os.getenv("MOCK_LLM", "1") != "0"`.
 Unset or `"1"` selects the mock baseline; only `"0"` selects the real LLM path.
 Any other value is treated as mock.
 
-### Node `classify_intent`
+#### Node `classify_intent`
 
 | Mode | Behaviour |
 | --- | --- |
@@ -510,7 +512,7 @@ routes to `general_question`. Matching is case-insensitive.
 unreachable or its output fails validation, so a routing failure degrades
 instead of returning a 500.
 
-### Node `retrieve_and_answer`
+#### Node `retrieve_and_answer`
 
 | Mode | Behaviour |
 | --- | --- |
@@ -520,7 +522,7 @@ instead of returning a 500.
 Retrieval is identical in both modes. The toggle only swaps the generation
 step.
 
-### Node `direct_answer`
+#### Node `direct_answer`
 
 | Mode | Behaviour |
 | --- | --- |
@@ -532,7 +534,7 @@ the answer is a fixed refusal — a model call would add latency, cost and a
 failure mode for a constant string. Both modes return `sources=[]` and
 `confidence=1.0`.
 
-### The 2-retry corrective loop
+#### The 2-retry corrective loop
 
 `generate_structured()` enforces the output schema with up to
 `LLM_CORRECTIVE_RETRIES = 2` corrective attempts, so at most 3 API calls:
@@ -555,7 +557,7 @@ immediately, because retrying a network fault three times only adds latency.
 
 ---
 
-# Configuration
+## Configuration
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
@@ -569,7 +571,7 @@ Other tunables are module-level constants in `main.py`: `CHUNK_SIZE`,
 
 ---
 
-# Expected Startup Output
+## Expected Startup Output
 
 ```
 INFO:     Started server process
@@ -586,7 +588,7 @@ Each request logs its routing decision:
 
 ---
 
-# Technologies Used
+## Technologies Used
 
 - **Python**
 - **FastAPI** — HTTP API
@@ -599,34 +601,34 @@ Each request logs its routing decision:
 
 ---
 
-# Troubleshooting
+## Troubleshooting
 
-## `GROQ_API_KEY is not set`
+### `GROQ_API_KEY is not set`
 
 Expected when `MOCK_LLM=0` without a key. Either export a key or leave
 `MOCK_LLM` at its default of `1`.
 
-## `LLM output failed GroundedAnswer validation after 2 corrective retries`
+### `LLM output failed GroundedAnswer validation after 2 corrective retries`
 
 The model produced unusable output three times in a row. Lower
 `LLM_TEMPERATURE` (already `0.0`) or try a different `GROQ_MODEL`.
 
-## ChromaDB raises on `get_or_create_collection`
+### ChromaDB raises on `get_or_create_collection`
 
 `open_collection()` catches this and recreates the collection. If startup still
 fails, delete `chroma_db/` and restart — it is regenerated from `docs/`.
 
-## `chroma_db` is locked or corrupt
+### `chroma_db` is locked or corrupt
 
 Another process is holding the store, or the index is damaged. Stop all
 instances and delete the `chroma_db/` directory, then restart.
 
-## First startup is slow
+### First startup is slow
 
 Expected. The `all-MiniLM-L6-v2` model is downloaded on first use and the
 corpus is embedded. Subsequent startups print `reused=True` and are fast.
 
-## Port 8000 already in use
+### Port 8000 already in use
 
 Pick a free local port and use it consistently in the server command, the curl
 examples and the Gradio client:
@@ -640,7 +642,7 @@ The Docker container port (`7860`) and the Gradio port (`7861`) are unaffected.
 
 ---
 
-# Conclusion
+## Conclusion
 
 This module demonstrates a complete retrieval-augmented generation workflow:
 
