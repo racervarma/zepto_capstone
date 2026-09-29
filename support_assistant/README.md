@@ -1,3 +1,13 @@
+---
+title: Zepto Support
+emoji: 🛒
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Zepto Data & AI Platform — Module 3
 # Support Assistant (RAG + LangGraph + FastAPI)
 
