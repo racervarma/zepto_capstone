@@ -65,6 +65,7 @@ zepto_capstone/
 │   └── README.md             Module 3 documentation
 │
 ├── venv/
+├── chat_ui.py                 Optional Gradio web UI for Module 3
 ├── requirements.txt          Consolidated dependencies
 └── README.md                 This file
 ```
@@ -119,6 +120,7 @@ The consolidated `requirements.txt` covers all three modules:
 | `sentence-transformers` | Module 3 — embeddings |
 | `chromadb` | Module 3 — vector store |
 | `langgraph` | Module 3 — routing graph |
+| `gradio` | Module 3 — optional web UI |
 
 SQLite is used through Python's built-in `sqlite3` standard library module, so
 it requires no separate installation.
@@ -134,6 +136,13 @@ Each module is independent and can be run in any order.
 python data_pipeline/pipeline.py
 python analytics/analytics_pipeline.py
 uvicorn support_assistant.main:app --port 8000
+```
+
+Module 3 also ships an optional browser interface. With the API already
+running, start it in a second terminal:
+
+```
+python chat_ui.py
 ```
 
 ---
@@ -493,6 +502,58 @@ To run the container against the real LLM:
 docker run -p 7860:7860 -e MOCK_LLM=0 -e GROQ_API_KEY=your_key_here zepto-support
 ```
 
+### Web UI (Optional)
+
+`chat_ui.py` in the project root provides an interactive Gradio web interface,
+so the assistant can be used from a browser instead of cURL in the terminal.
+The UI is a thin client: it holds no model or vector store of its own, and
+sends each message to the FastAPI `/ask` endpoint over HTTP.
+
+This needs two terminals, because the UI and the backend are separate
+processes.
+
+**Terminal 1 — start the API:**
+
+```
+uvicorn support_assistant.main:app --port 8000
+```
+
+**Terminal 2 — start the UI:**
+
+```
+python chat_ui.py
+```
+
+Then open <http://127.0.0.1:7861> in your browser. The chatbot is preloaded
+with example questions covering delivery, returns, membership, cancellation,
+gift cards, and support hours.
+
+The UI listens on port 7861, which is deliberately different from the 8000 used
+by the API, so the two never conflict.
+
+Each reply shows the answer followed by the documents it was drawn from:
+
+```
+Based on the retrieved context: Zepto delivers grocery and household
+essentials to serviceable pin codes within 10 to 30 minutes ...
+Sources: doc_01.txt, doc_03.txt
+```
+
+If the API is not running, the UI still loads and reports the problem in the
+chat window along with the command to start it, rather than failing silently.
+
+The backend address and UI port can be overridden with the `SUPPORT_API_URL`
+and `GRADIO_PORT` environment variables:
+
+```
+$env:SUPPORT_API_URL = "http://127.0.0.1:7860"
+$env:GRADIO_PORT = "7862"
+python chat_ui.py
+```
+
+> When the API is running in Docker on port 7860, point `SUPPORT_API_URL` at
+> `http://127.0.0.1:7860` as shown above.
+
 ### Test transcripts
 
 Both transcripts were captured from a running server with `MOCK_LLM` left at
@@ -680,6 +741,7 @@ This keeps malformed model output from ever reaching a client.
 | Uvicorn | ASGI server |
 | Pydantic | Strict schema validation |
 | LangGraph | Stateful routing graph |
+| Gradio | Optional web UI for the support assistant |
 | ChromaDB | Local persistent vector store |
 | sentence-transformers | `all-MiniLM-L6-v2` embeddings |
 | Docker | Containerization |

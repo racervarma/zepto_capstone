@@ -22,3 +22,6 @@ pydantic
 sentence-transformers
 chromadb
 langgraph
+
+# Module 3 — Web UI (chat_ui.py)
+gradio
