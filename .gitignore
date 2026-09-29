@@ -1,1 +1,6 @@
 venv/ 
+
+# Generated vector store for the support assistant
+support_assistant/chroma_db/
+support_assistant/**/__pycache__/
+

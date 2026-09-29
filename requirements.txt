@@ -1,0 +1,24 @@
+# Zepto Data & AI Platform — consolidated dependencies
+#
+# Install with:
+#   pip install -r requirements.txt
+
+# Module 1 — Data Pipeline
+requests
+beautifulsoup4
+pandas
+
+# Module 2 — Analytics Pipeline
+seaborn
+scikit-learn
+imbalanced-learn
+matplotlib
+joblib
+
+# Module 3 — Support Assistant
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+chromadb
+langgraph
